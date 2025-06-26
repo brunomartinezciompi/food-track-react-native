@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeStack } from '@/navigation/HomeStack';
-import { UpdatesStack } from '../Updates/UpdatesStack';
+import { MoreStack } from '../More/MoreStack';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -24,13 +24,13 @@ export function AppNavigationTabBar() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={UpdatesStack}
+        name="More"
+        component={MoreStack}
         options={{
           headerShown: false,
-          tabBarLabel: t('navigation.profile'),
+          tabBarLabel: t('navigation.more'),
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" size={size} color={color} />
+            <Ionicons name="ellipsis-horizontal" size={size} color={color} />
           ),
         }}
       />

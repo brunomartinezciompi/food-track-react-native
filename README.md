@@ -1,65 +1,123 @@
-# Starter Template with React Navigation
+# 🍕 FoodTrack - React Native Learning Project
 
-This is a minimal starter template for React Native apps using Expo and React Navigation.
+A food delivery app built with React Native + Expo to learn key concepts: **Navigation**, **Presentation**, **Localization**, and **UI**.
 
-It includes the following:
+## 🎯 Learning Focus
 
-- Example [Native Stack](https://reactnavigation.org/docs/native-stack-navigator) with a nested [Bottom Tab](https://reactnavigation.org/docs/bottom-tab-navigator)
-- Web support with [React Native for Web](https://necolas.github.io/react-native-web/)
-- TypeScript support and configured for React Navigation
-- Automatic deep link and URL handling configuration
-- Expo [Development Build](https://docs.expo.dev/develop/development-builds/introduction/) with [Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)
-- Edge-to-edge configured on Android with [`react-native-edge-to-edge`](https://www.npmjs.com/package/react-native-edge-to-edge)
+### 🧭 Navigation
+- **Tab Navigation**: Home + More tabs
+- **Stack Navigation**: Separate stacks per tab
+- **Deep Linking**: Product detail navigation
+- **Type-safe Navigation**: TypeScript with React Navigation
 
-## Getting Started
+### 🎨 Presentation & UI
+- **Modal Presentations**: Layout sheet, restaurant info
+- **Product Cards**: Grid/List toggle with animations
+- **Size Selection**: Interactive picker with pricing
+- **Header Buttons**: Custom header components
+- **Responsive Design**: Adaptive layouts
 
-1. Create a new project using this template:
+### 🌍 Localization (i18n)
+- **Multi-language**: EN, ES, PT
+- **Dynamic Switching**: Real-time language changes
+- **Localized Content**: Product descriptions, ingredients, UI text
+- **Translation Keys**: Organized JSON structure
 
-   ```sh
-   npx create-expo-app@latest --template react-navigation/template
-   ```
+### 🔧 TypeScript & Data
+- **Union Types**: `Size`, `ProductCategory`, `ProductTag`
+- **Product Data**: 10+ pizzas with nutrition, ingredients, pricing
+- **Type Safety**: Full TypeScript coverage
+- **Helper Functions**: Product filtering and queries
 
-2. Edit the `app.json` file to configure the `name`, `slug`, `scheme` and bundle identifiers (`ios.bundleIdentifier` and `android.bundleIdentifier`) for your app.
+## 🚀 Quick Start
 
-3. Edit the `src/App.tsx` file to start working on your app.
+```bash
+npm install
+npx expo start
+```
 
-## Running the app
+## 📁 Key Files
 
-- Install the dependencies:
+```
+src/
+├── navigation/
+│   ├── HomeStack.tsx       # Home tab stack
+│   └── root/index.tsx      # Root tab navigator
+├── screens/
+│   ├── Home/               # Product list + layout toggle
+│   ├── ProductDetail/      # Product detail + size picker
+│   ├── More/              # Settings menu
+│   └── TabBar/            # Bottom tab bar
+├── localization/
+│   └── translations/      # EN/ES/PT JSON files
+├── assets/data/
+│   └── products.ts        # Product catalog + types
+└── types.ts              # TypeScript definitions
+```
 
-  ```sh
-  npm install
-  ```
+## 🎯 Key Concepts Implemented
 
-- Start the development server:
+### Navigation Structure
+```typescript
+// Tab-based with separate stacks
+Root Navigator
+├── Home Tab (HomeStack)
+│   ├── Home (Product List)
+│   ├── ProductDetail
+│   ├── Profile
+│   └── Settings
+└── More Tab (MoreStack)
+    ├── More (Menu)
+    ├── Profile
+    ├── Settings
+    └── LanguageSelector
+```
 
-  ```sh
-  npm start
-  ```
+### TypeScript Types
+```typescript
+type Size = 'S' | 'M' | 'L' | 'XL';
+type ProductCategory = 'pizza' | 'burger' | 'pasta';
+type ProductTag = 'vegetarian' | 'popular' | 'spicy';
 
-- Build and run iOS and Android development builds:
+interface Product {
+  id: number;
+  descriptions: LocalizedDescriptions;
+  sizes?: ProductSize[];
+  tags: ProductTag[];
+}
+```
 
-  ```sh
-  npm run ios
-  # or
-  npm run android
-  ```
+### Localization
+```typescript
+// Dynamic language switching
+const { t, i18n } = useTranslation();
+i18n.changeLanguage('es'); // Real-time switch
 
-- In the terminal running the development server, press `i` to open the iOS simulator, `a` to open the Android device or emulator, or `w` to open the web browser.
+// Localized product data
+descriptions: {
+  en: 'Classic pepperoni pizza',
+  es: 'Pizza clásica de pepperoni',
+  pt: 'Pizza clássica de pepperoni'
+}
+```
 
-## Notes
+## 🔍 What I Learned
 
-This project uses a [development build](https://docs.expo.dev/develop/development-builds/introduction/) and cannot be run with [Expo Go](https://expo.dev/go). To run the app with Expo Go, edit the `package.json` file, remove the `expo-dev-client` package and `--dev-client` flag from the `start` script.
+- **React Navigation**: Tab + Stack navigation patterns
+- **Modal Presentations**: Layout sheets and overlays
+- **i18n**: Multi-language support with i18next
+- **TypeScript**: Union types, interfaces, type safety
+- **Component Architecture**: Modular, reusable components
+- **Data Management**: Structured product data with types
 
-We highly recommend using the development builds for normal development and testing.
+## 🛠️ Tech Stack
 
-The `ios` and `android` folder are gitignored in the project by default as they are automatically generated during the build process ([Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)). This means that you should not edit these folders directly and use [config plugins](https://docs.expo.dev/config-plugins/) instead. However, if you need to edit these folders, you can remove them from the `.gitignore` file so that they are tracked by git.
-
-## Resources
-
-- [React Navigation documentation](https://reactnavigation.org/)
-- [Expo documentation](https://docs.expo.dev/)
+- **React Native** + **Expo**
+- **TypeScript**
+- **React Navigation v6**
+- **i18next** (localization)
+- **Ionicons** (icons)
 
 ---
 
-Demo assets are from [lucide.dev](https://lucide.dev/)
+**Learning Project** - Focus on navigation, presentation, localization, and UI patterns.

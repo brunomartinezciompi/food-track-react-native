@@ -29,7 +29,7 @@ function MenuItem({ title, subtitle, iconName, onPress }: MenuItemProps) {
   );
 }
 
-export function Updates() {
+export function More() {
   const navigation = useNavigation<NavigationProp>();
   const { t } = useTranslation();
 
