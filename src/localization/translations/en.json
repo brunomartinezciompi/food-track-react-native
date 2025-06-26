@@ -1,0 +1,121 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "close": "Close",
+    "back": "Back"
+  },
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile",
+    "ourMenu": "Our Menu",
+    "feed": "Feed",
+    "updates": "Updates"
+  },
+  "home": {
+    "layoutList": "List View",
+    "layoutGrid": "Grid View",
+    "selectLayout": "Select Layout",
+    "preparationTime": "min",
+    "popular": "Popular",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "glutenFree": "Gluten Free",
+    "spicy": "Spicy",
+    "new": "New",
+    "healthy": "Healthy",
+    "itemsAvailable": "delicious items available",
+    "noProductsTitle": "No products available",
+    "noProductsSubtitle": "Check back later for new delicious items!"
+  },
+  "profile": {
+    "accountDetails": "Account Details",
+    "accountDetailsSubtitle": "Personal information and stats",
+    "settings": "Settings",
+    "settingsSubtitle": "Preferences and configuration",
+    "other": "Other",
+    "otherSubtitle": "Additional options"
+  },
+  "accountDetails": {
+    "orders": "Orders",
+    "rating": "Rating",
+    "saved": "Saved"
+  },
+  "settings": {
+    "language": "Language",
+    "languageSubtitle": "Choose your preferred language",
+    "selectLanguage": "Select Language"
+  },
+  "languages": {
+    "english": "English",
+    "spanish": "Spanish", 
+    "portuguese": "Portuguese"
+  },
+  "productDetail": {
+    "title": "Product Details",
+    "chooseSize": "Choose Size",
+    "nutritionFacts": "Nutrition Facts",
+    "calories": "cal",
+    "protein": "protein",
+    "carbs": "carbs",
+    "fat": "fat",
+    "ingredients": "Ingredients",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart"
+  },
+  "ingredients": {
+    "Pizza dough": "Pizza dough",
+    "Tomato sauce": "Tomato sauce",
+    "Fresh mozzarella": "Fresh mozzarella",
+    "Fresh basil": "Fresh basil",
+    "Olive oil": "Olive oil",
+    "Mozzarella cheese": "Mozzarella cheese",
+    "Bell peppers": "Bell peppers",
+    "Mushrooms": "Mushrooms",
+    "Red onions": "Red onions",
+    "Black olives": "Black olives",
+    "Tomatoes": "Tomates",
+    "Mozzarella": "Mozzarella",
+    "Cheddar": "Cheddar",
+    "Parmesan": "Parmesan",
+    "Romano": "Romano",
+    "Provolone": "Provolone",
+    "Asiago": "Asiago",
+    "Pepperoni": "Pepperoni",
+    "Oregano": "Oregano",
+    "Italian sausage": "Italian sausage",
+    "Onions": "Onions",
+    "Ham": "Ham",
+    "Bacon": "Bacon",
+    "Pineapple": "Pineapple",
+    "BBQ sauce": "BBQ sauce",
+    "Grilled chicken": "Grilled chicken",
+    "Cilantro": "Cilantro",
+    "Ranch dressing": "Ranch dressing",
+    "Green onions": "Green onions"
+  },
+  "restaurantInfo": {
+    "title": "About FoodTrack",
+    "ourStory": "Our Story",
+    "ourStoryText": "FoodTrack has been serving delicious, authentic pizzas since 2020. We're passionate about using fresh, locally-sourced ingredients to create unforgettable dining experiences for our community.",
+    "freshIngredients": "Fresh Ingredients",
+    "freshIngredientsText": "Every pizza is made with hand-selected ingredients. From our signature dough made fresh daily to our organic vegetables and premium meats, quality is our top priority.",
+    "quickDelivery": "Quick Delivery",
+    "quickDeliveryText": "Our efficient kitchen and delivery team ensure your order arrives hot and fresh, typically within 15-25 minutes of ordering.",
+    "communityFirst": "Community First",
+    "communityFirstText": "We're proud to be part of this amazing community. We support local farmers, participate in community events, and strive to make every customer feel like family.",
+    "getInTouch": "Get in Touch"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "subtitle": "Oops! The page you're looking for doesn't exist or is under construction.",
+    "comingSoon": "Coming Soon",
+    "orderHistory": "Order History",
+    "favorites": "Favorites",
+    "loyaltyRewards": "Loyalty Rewards",
+    "deliveryTracking": "Delivery Tracking"
+  }
+} 

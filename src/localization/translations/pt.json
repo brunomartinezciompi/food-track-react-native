@@ -1,0 +1,121 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Salvar",
+    "close": "Fechar",
+    "back": "Voltar"
+  },
+  "navigation": {
+    "home": "Início",
+    "profile": "Perfil",
+    "ourMenu": "Nosso Cardápio",
+    "feed": "Menu",
+    "updates": "Atualizações"
+  },
+  "home": {
+    "layoutList": "Vista Lista",
+    "layoutGrid": "Vista Grade",
+    "selectLayout": "Selecionar Layout",
+    "preparationTime": "min",
+    "popular": "Popular",
+    "vegetarian": "Vegetariano",
+    "vegan": "Vegano",
+    "glutenFree": "Sem Glúten",
+    "spicy": "Picante",
+    "new": "Novo",
+    "healthy": "Saudável",
+    "itemsAvailable": "itens deliciosos disponíveis",
+    "noProductsTitle": "Nenhum produto disponível",
+    "noProductsSubtitle": "Volte mais tarde para novos itens deliciosos!"
+  },
+  "profile": {
+    "accountDetails": "Detalhes da Conta",
+    "accountDetailsSubtitle": "Informações pessoais e estatísticas",
+    "settings": "Configurações",
+    "settingsSubtitle": "Preferências e configuração",
+    "other": "Outros",
+    "otherSubtitle": "Opções adicionais"
+  },
+  "accountDetails": {
+    "orders": "Pedidos",
+    "rating": "Avaliação",
+    "saved": "Economizado"
+  },
+  "settings": {
+    "language": "Idioma",
+    "languageSubtitle": "Escolha seu idioma preferido",
+    "selectLanguage": "Selecionar Idioma"
+  },
+  "languages": {
+    "english": "Inglês",
+    "spanish": "Espanhol",
+    "portuguese": "Português"
+  },
+  "productDetail": {
+    "title": "Detalhes do Produto",
+    "chooseSize": "Escolher Tamanho",
+    "nutritionFacts": "Informações Nutricionais",
+    "calories": "cal",
+    "protein": "proteína",
+    "carbs": "carboidratos",
+    "fat": "gordura",
+    "ingredients": "Ingredientes",
+    "quantity": "Quantidade",
+    "addToCart": "Adicionar ao Carrinho"
+  },
+  "ingredients": {
+    "Pizza dough": "Massa de pizza",
+    "Tomato sauce": "Molho de tomate",
+    "Fresh mozzarella": "Mussarela fresca",
+    "Fresh basil": "Manjericão fresco",
+    "Olive oil": "Azeite de oliva",
+    "Mozzarella cheese": "Queijo mussarela",
+    "Bell peppers": "Pimentões",
+    "Mushrooms": "Cogumelos",
+    "Red onions": "Cebolas roxas",
+    "Black olives": "Azeitonas pretas",
+    "Tomatoes": "Tomates",
+    "Mozzarella": "Mussarela",
+    "Cheddar": "Cheddar",
+    "Parmesan": "Parmesão",
+    "Romano": "Romano",
+    "Provolone": "Provolone",
+    "Asiago": "Asiago",
+    "Pepperoni": "Pepperoni",
+    "Oregano": "Orégano",
+    "Italian sausage": "Linguiça italiana",
+    "Onions": "Cebolas",
+    "Ham": "Presunto",
+    "Bacon": "Bacon",
+    "Pineapple": "Abacaxi",
+    "BBQ sauce": "Molho BBQ",
+    "Grilled chicken": "Frango grelhado",
+    "Cilantro": "Coentro",
+    "Ranch dressing": "Molho ranch",
+    "Green onions": "Cebolinhas"
+  },
+  "restaurantInfo": {
+    "title": "Sobre o FoodTrack",
+    "ourStory": "Nossa História",
+    "ourStoryText": "O FoodTrack tem servido pizzas deliciosas e autênticas desde 2020. Somos apaixonados por usar ingredientes frescos de origem local para criar experiências gastronômicas inesquecíveis para nossa comunidade.",
+    "freshIngredients": "Ingredientes Frescos",
+    "freshIngredientsText": "Cada pizza é feita com ingredientes selecionados à mão. Desde nossa massa especial feita fresca diariamente até nossos vegetais orgânicos e carnes premium, a qualidade é nossa máxima prioridade.",
+    "quickDelivery": "Entrega Rápida",
+    "quickDeliveryText": "Nossa equipe eficiente de cozinha e entrega garante que seu pedido chegue quente e fresco, tipicamente dentro de 15-25 minutos do pedido.",
+    "communityFirst": "Comunidade em Primeiro",
+    "communityFirstText": "Temos orgulho de fazer parte desta comunidade incrível. Apoiamos agricultores locais, participamos de eventos comunitários e nos esforçamos para fazer cada cliente se sentir como família.",
+    "getInTouch": "Entre em Contato"
+  },
+  "notFound": {
+    "title": "Página Não Encontrada",
+    "subtitle": "Ops! A página que você está procurando não existe ou está em construção.",
+    "comingSoon": "Em Breve",
+    "orderHistory": "Histórico de Pedidos",
+    "favorites": "Favoritos",
+    "loyaltyRewards": "Recompensas de Fidelidade",
+    "deliveryTracking": "Rastreamento de Entrega"
+  }
+} 
