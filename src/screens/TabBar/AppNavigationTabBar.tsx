@@ -4,14 +4,25 @@ import { MoreStack } from '../More/MoreStack';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
 
 const Tab = createBottomTabNavigator();
 
 export function AppNavigationTabBar() {
   const { t } = useTranslation();
+  const colors = useColors();
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: colors.tabBar.background,
+          borderTopColor: colors.border.primary,
+        },
+        tabBarActiveTintColor: colors.tabBar.iconSelected,
+        tabBarInactiveTintColor: colors.tabBar.iconDefault,
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStack}

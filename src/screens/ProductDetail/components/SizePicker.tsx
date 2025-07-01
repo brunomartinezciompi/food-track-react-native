@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Product, SizeOption, ProductSize } from '@/types';
+import { useColors } from '@/hooks/useColors';
 
 export function SizePicker({ 
   product, 
@@ -11,24 +12,34 @@ export function SizePicker({
   selectedSize: SizeOption; 
   onSizeSelect: (size: SizeOption) => void;
 }) {
+  const colors = useColors();
+  
   if (!product.sizes) return null;
 
   return (
     <View style={styles.sizeSection}>
-      <Text style={styles.sectionTitle}>Choose Size</Text>
+      <Text style={[styles.sectionTitle, { color: colors.text.primary }]}>Choose Size</Text>
       <View style={styles.sizeOptions}>
         {product.sizes.map((sizeInfo: ProductSize) => (
           <TouchableOpacity
             key={sizeInfo.size}
             style={[
               styles.sizeOption,
-              selectedSize === sizeInfo.size && styles.selectedSizeOption
+              { 
+                backgroundColor: colors.background.secondary,
+                borderColor: colors.border.primary,
+              },
+              selectedSize === sizeInfo.size && {
+                backgroundColor: colors.interactive.primary + '20', // 20% opacity
+                borderColor: colors.interactive.primary,
+              }
             ]}
             onPress={() => onSizeSelect(sizeInfo.size)}
           >
             <Text style={[
               styles.sizeText,
-              selectedSize === sizeInfo.size && styles.selectedSizeText
+              { color: colors.text.primary },
+              selectedSize === sizeInfo.size && { color: colors.interactive.primary }
             ]}>
               {sizeInfo.size}
             </Text>
@@ -43,7 +54,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#111827',
     marginBottom: 16,
   },
   sizeSection: {
@@ -55,26 +65,16 @@ const styles = StyleSheet.create({
   },
   sizeOption: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
     borderWidth: 2,
-    borderColor: '#E5E7EB',
     borderRadius: 16,
     padding: 12,
     alignItems: 'center',
     minHeight: 80,
     justifyContent: 'center',
   },
-  selectedSizeOption: {
-    backgroundColor: '#EFF6FF',
-    borderColor: '#3B82F6',
-  },
   sizeText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#374151',
     marginBottom: 4,
-  },
-  selectedSizeText: {
-    color: '#1D4ED8',
   },
 }); 

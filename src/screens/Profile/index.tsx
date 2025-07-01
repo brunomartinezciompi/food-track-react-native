@@ -1,6 +1,7 @@
 import { Text } from '@react-navigation/elements';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
+import { useColors } from '@/hooks/useColors';
 
 type ProfileScreenRouteProp = RouteProp<{
   Profile: { user?: string };
@@ -8,32 +9,33 @@ type ProfileScreenRouteProp = RouteProp<{
 
 export function Profile() {
   const route = useRoute<ProfileScreenRouteProp>();
+  const colors = useColors();
   // Default user if no params provided
   const userName = route.params?.user || 'Bruno Martinez';
   
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background.secondary }]}>
       <View style={styles.avatarContainer}>
-        <View style={styles.avatar}>
+        <View style={[styles.avatar, { backgroundColor: colors.interactive.primary }]}>
           <Text style={styles.avatarText}>BM</Text>
         </View>
       </View>
       
-      <Text style={styles.name}>{userName}</Text>
-      <Text style={styles.email}>bruno@foodtrack.com</Text>
+      <Text style={[styles.name, { color: colors.text.primary }]}>{userName}</Text>
+      <Text style={[styles.email, { color: colors.text.secondary }]}>bruno@foodtrack.com</Text>
       
       <View style={styles.statsContainer}>
         <View style={styles.statItem}>
-          <Text style={styles.statNumber}>24</Text>
-          <Text style={styles.statLabel}>Orders</Text>
+          <Text style={[styles.statNumber, { color: colors.text.primary }]}>24</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Orders</Text>
         </View>
         <View style={styles.statItem}>
-          <Text style={styles.statNumber}>⭐ 4.8</Text>
-          <Text style={styles.statLabel}>Rating</Text>
+          <Text style={[styles.statNumber, { color: colors.text.primary }]}>⭐ 4.8</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Rating</Text>
         </View>
         <View style={styles.statItem}>
-          <Text style={styles.statNumber}>$127</Text>
-          <Text style={styles.statLabel}>Saved</Text>
+          <Text style={[styles.statNumber, { color: colors.status.success }]}>$127</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Saved</Text>
         </View>
       </View>
     </View>
@@ -46,7 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 20,
-    backgroundColor: '#F8F9FA',
     padding: 20,
   },
   avatarContainer: {
@@ -56,7 +57,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#007AFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -68,12 +68,10 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
     marginBottom: 5,
   },
   email: {
     fontSize: 16,
-    color: '#6B7280',
     marginBottom: 20,
   },
   statsContainer: {
@@ -86,11 +84,9 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
   },
   statLabel: {
     fontSize: 14,
-    color: '#6B7280',
     marginTop: 5,
   },
 });

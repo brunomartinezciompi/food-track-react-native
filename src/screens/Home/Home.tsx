@@ -5,6 +5,7 @@ import { Product } from '@/types';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
 
 type HomeStackParamList = {
   HomeMain: undefined;
@@ -27,6 +28,7 @@ export function Home() {
   const [sheetVisible, setSheetVisible] = useState(false);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
   const navigation = useNavigation<NavigationProp>();
+  const colors = useColors();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -38,7 +40,7 @@ export function Home() {
           <Ionicons 
             name={layoutMode === 'list' ? 'list' : 'grid'} 
             size={24} 
-            color="#007AFF" 
+            color={colors.interactive.primary} 
           />
         </TouchableOpacity>
       ),
@@ -47,11 +49,11 @@ export function Home() {
           style={styles.headerButton}
           onPress={() => setInfoModalVisible(true)}
         >
-          <Ionicons name="information-circle-outline" size={24} color="#007AFF" />
+          <Ionicons name="information-circle-outline" size={24} color={colors.interactive.primary} />
         </TouchableOpacity>
       ),
     });
-  }, [navigation, layoutMode]);
+  }, [navigation, layoutMode, colors]);
 
   const handleProductPress = (product: Product) => {
     navigation.navigate('ProductDetail', { id: product.id });
@@ -63,7 +65,7 @@ export function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background.secondary }]}>
       <ProductList 
         onProductPress={handleProductPress} 
         layoutMode={layoutMode}
@@ -87,7 +89,6 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
   },
   headerButton: {
     padding: 8,

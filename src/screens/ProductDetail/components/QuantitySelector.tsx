@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
 
 export function QuantitySelector({ 
   quantity, 
@@ -9,23 +10,39 @@ export function QuantitySelector({
   quantity: number; 
   onQuantityChange: (quantity: number) => void;
 }) {
+  const colors = useColors();
+  
   return (
     <View style={styles.quantitySection}>
-      <Text style={styles.sectionTitle}>Quantity</Text>
-      <View style={styles.quantityControls}>
+      <Text style={[styles.sectionTitle, { color: colors.text.primary }]}>Quantity</Text>
+      <View style={[styles.quantityControls, { backgroundColor: colors.background.secondary }]}>
         <TouchableOpacity
-          style={[styles.quantityButton, quantity <= 1 && styles.quantityButtonDisabled]}
+          style={[
+            styles.quantityButton, 
+            { 
+              backgroundColor: colors.background.primary,
+              shadowColor: colors.shadow.color,
+            },
+            quantity <= 1 && { backgroundColor: colors.background.tertiary }
+          ]}
           onPress={() => quantity > 1 && onQuantityChange(quantity - 1)}
           disabled={quantity <= 1}
         >
-          <Ionicons name="remove" size={20} color={quantity <= 1 ? "#D1D5DB" : "#374151"} />
+          <Ionicons 
+            name="remove" 
+            size={20} 
+            color={quantity <= 1 ? colors.text.tertiary : colors.text.primary} 
+          />
         </TouchableOpacity>
-        <Text style={styles.quantityText}>{quantity}</Text>
+        <Text style={[styles.quantityText, { color: colors.text.primary }]}>{quantity}</Text>
         <TouchableOpacity
-          style={styles.quantityButton}
+          style={[styles.quantityButton, { 
+            backgroundColor: colors.background.primary,
+            shadowColor: colors.shadow.color,
+          }]}
           onPress={() => onQuantityChange(quantity + 1)}
         >
-          <Ionicons name="add" size={20} color="#374151" />
+          <Ionicons name="add" size={20} color={colors.text.primary} />
         </TouchableOpacity>
       </View>
     </View>
@@ -36,7 +53,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#111827',
     marginBottom: 16,
   },
   quantitySection: {
@@ -46,7 +62,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: '#F9FAFB',
     borderRadius: 12,
     padding: 4,
   },
@@ -54,22 +69,16 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 8,
-    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 2,
     elevation: 1,
   },
-  quantityButtonDisabled: {
-    backgroundColor: '#F3F4F6',
-  },
   quantityText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#111827',
     marginHorizontal: 20,
     minWidth: 30,
     textAlign: 'center',

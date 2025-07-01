@@ -1,49 +1,41 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import type { LayoutMode } from '@/screens/Home/Home';
+import { useNavigation } from '@react-navigation/native';
+import { useColors } from '@/hooks/useColors';
 
-export function HomeHeaderLeftLayoutToggle({ layoutMode, onPress }: { layoutMode: LayoutMode; onPress: () => void }) {
-  return (
-    <TouchableOpacity onPress={onPress} style={styles.headerButton}>
-      <Ionicons
-        name={layoutMode === 'list' ? 'grid-outline' : 'list-outline'}
-        size={22}
-        color="#007AFF"
-      />
-    </TouchableOpacity>
-  );
-}
+export function HeaderButtons() {
+  const navigation = useNavigation();
+  const colors = useColors();
 
-export function HomeHeaderRightProfileSettings({ onProfile, onSettings }: { onProfile: () => void; onSettings: () => void }) {
   return (
-    <View style={styles.headerRightContainer}>
-      <TouchableOpacity onPress={onProfile} style={styles.headerButton}>
-        <View style={styles.avatar}>
-          <Ionicons name="person" size={18} color="#007AFF" />
-        </View>
+    <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => navigation.navigate('Profile' as never)}
+      >
+        <Ionicons name="person" size={18} color={colors.interactive.primary} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={onSettings} style={styles.headerButton}>
-        <Ionicons name="settings-outline" size={22} color="#007AFF" />
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => navigation.navigate('Settings' as never)}
+      >
+        <Ionicons name="settings-outline" size={22} color={colors.interactive.primary} />
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  headerButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-  },
-  headerRightContainer: {
+  container: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 8,
   },
-  avatar: {
+  button: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#E3F2FD',
     alignItems: 'center',
     justifyContent: 'center',
   },

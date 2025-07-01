@@ -10,6 +10,8 @@ import {
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { products } from '@/assets/data/products';
 import { SizeOption } from '@/types';
+import { useColors } from '@/hooks/useColors';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   ProductNotFound,
   ProductHeroSection,
@@ -29,6 +31,8 @@ type ProductDetailRouteProp = RouteProp<
 export function ProductDetail() {
   const route = useRoute<ProductDetailRouteProp>();
   const { id } = route.params;
+  const colors = useColors();
+  const { isDark } = useTheme();
   
   const product = products.find(p => p.id === id);
   
@@ -48,8 +52,11 @@ export function ProductDetail() {
   const currentPrice = getCurrentPrice();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}>
+      <StatusBar 
+        barStyle={isDark ? "light-content" : "dark-content"} 
+        backgroundColor={colors.background.primary} 
+      />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <ProductHeroSection product={product} />
         
@@ -84,7 +91,6 @@ export function ProductDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   scrollView: {
     flex: 1,

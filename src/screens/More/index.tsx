@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
 
 type NavigationProp = NativeStackNavigationProp<any>;
 
@@ -15,16 +16,21 @@ interface MenuItemProps {
 }
 
 function MenuItem({ title, subtitle, iconName, onPress }: MenuItemProps) {
+  const colors = useColors();
+  
   return (
-    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
-      <View style={styles.menuItemIcon}>
-        <Ionicons name={iconName} size={24} color="#007AFF" />
+    <TouchableOpacity style={[styles.menuItem, { 
+      backgroundColor: colors.background.primary,
+      shadowColor: colors.shadow.color,
+    }]} onPress={onPress}>
+      <View style={[styles.menuItemIcon, { backgroundColor: colors.background.tertiary }]}>
+        <Ionicons name={iconName} size={24} color={colors.interactive.primary} />
       </View>
       <View style={styles.menuItemContent}>
-        <Text style={styles.menuItemTitle}>{title}</Text>
-        <Text style={styles.menuItemSubtitle}>{subtitle}</Text>
+        <Text style={[styles.menuItemTitle, { color: colors.text.primary }]}>{title}</Text>
+        <Text style={[styles.menuItemSubtitle, { color: colors.text.secondary }]}>{subtitle}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color="#C7C7CC" />
+      <Ionicons name="chevron-forward" size={20} color={colors.text.tertiary} />
     </TouchableOpacity>
   );
 }
@@ -32,6 +38,7 @@ function MenuItem({ title, subtitle, iconName, onPress }: MenuItemProps) {
 export function More() {
   const navigation = useNavigation<NavigationProp>();
   const { t } = useTranslation();
+  const colors = useColors();
 
   const menuItems = [
     {
@@ -55,7 +62,7 @@ export function More() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.secondary }]}>
       <View style={styles.menuContainer}>
         {menuItems.map((item, index) => (
           <MenuItem
@@ -74,7 +81,6 @@ export function More() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
   },
   menuContainer: {
     flex: 1,
@@ -84,11 +90,9 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 12,
     marginBottom: 12,
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 2,
@@ -98,7 +102,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F0F9FF',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
@@ -109,11 +112,9 @@ const styles = StyleSheet.create({
   menuItemTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
     marginBottom: 2,
   },
   menuItemSubtitle: {
     fontSize: 14,
-    color: '#6B7280',
   },
 });

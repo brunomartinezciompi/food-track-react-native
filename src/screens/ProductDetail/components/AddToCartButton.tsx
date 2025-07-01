@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
 
 export function AddToCartButton({ 
   currentPrice, 
@@ -9,10 +10,18 @@ export function AddToCartButton({
   currentPrice: number; 
   quantity: number;
 }) {
+  const colors = useColors();
+  
   return (
-    <View style={styles.bottomSection}>
+    <View style={[styles.bottomSection, { 
+      backgroundColor: colors.background.primary,
+      borderTopColor: colors.border.primary,
+    }]}>
       <View style={styles.bottomContent}>
-        <TouchableOpacity style={styles.addToCartButton}>
+        <TouchableOpacity style={[styles.addToCartButton, { 
+          backgroundColor: colors.status.success,
+          shadowColor: colors.status.success,
+        }]}>
           <View style={styles.addToCartContent}>
             <Ionicons name="bag-add" size={24} color="#FFFFFF" />
             <Text style={styles.addToCartText}>Add to Cart</Text>
@@ -28,9 +37,7 @@ export function AddToCartButton({
 
 const styles = StyleSheet.create({
   bottomSection: {
-    backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
   },
   bottomContent: {
     padding: 24,
@@ -38,10 +45,8 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   addToCartButton: {
-    backgroundColor: '#059669',
     borderRadius: 16,
     padding: 18,
-    shadowColor: '#059669',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 12,

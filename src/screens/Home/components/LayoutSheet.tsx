@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
+import { useColors } from '@/hooks/useColors';
 import type { LayoutMode } from './ProductCard/';
 
 interface LayoutSheetProps {
@@ -17,6 +18,8 @@ interface LayoutSheetProps {
 }
 
 export function LayoutSheet({ visible, onClose, currentMode, onSelectMode }: LayoutSheetProps) {
+  const colors = useColors();
+  
   const handleSelectMode = (mode: LayoutMode) => {
     onSelectMode(mode);
     onClose();
@@ -29,46 +32,46 @@ export function LayoutSheet({ visible, onClose, currentMode, onSelectMode }: Lay
       animationType="fade"
       onRequestClose={onClose}
     >
-      <Pressable style={styles.overlay} onPress={onClose}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.title}>View Options</Text>
+      <Pressable style={[styles.overlay, { backgroundColor: `${colors.shadow.color}80` }]} onPress={onClose}>
+        <View style={[styles.container, { backgroundColor: colors.background.primary }]}>
+          <View style={[styles.header, { borderBottomColor: colors.border.primary }]}>
+            <Text style={[styles.title, { color: colors.text.primary }]}>View Options</Text>
           </View>
           
           <TouchableOpacity
-            style={[styles.option, currentMode === 'list' && styles.selectedOption]}
+            style={[styles.option, currentMode === 'list' && { backgroundColor: colors.background.secondary }]}
             onPress={() => handleSelectMode('list')}
           >
             <View style={styles.optionContent}>
-              <Text style={styles.optionIcon}>☰</Text>
+              <Text style={[styles.optionIcon, { color: colors.text.secondary }]}>☰</Text>
               <View>
-                <Text style={[styles.optionTitle, currentMode === 'list' && styles.selectedText]}>
+                <Text style={[styles.optionTitle, { color: colors.text.primary }, currentMode === 'list' && { color: colors.interactive.primary }]}>
                   List View
                 </Text>
-                <Text style={styles.optionDescription}>
+                <Text style={[styles.optionDescription, { color: colors.text.secondary }]}>
                   Detailed view with full information
                 </Text>
               </View>
             </View>
-            {currentMode === 'list' && <Text style={styles.checkmark}>✓</Text>}
+            {currentMode === 'list' && <Text style={[styles.checkmark, { color: colors.interactive.primary }]}>✓</Text>}
           </TouchableOpacity>
           
           <TouchableOpacity
-            style={[styles.option, currentMode === 'grid' && styles.selectedOption]}
+            style={[styles.option, currentMode === 'grid' && { backgroundColor: colors.background.secondary }]}
             onPress={() => handleSelectMode('grid')}
           >
             <View style={styles.optionContent}>
-              <Text style={styles.optionIcon}>⊞</Text>
+              <Text style={[styles.optionIcon, { color: colors.text.secondary }]}>⊞</Text>
               <View>
-                <Text style={[styles.optionTitle, currentMode === 'grid' && styles.selectedText]}>
+                <Text style={[styles.optionTitle, { color: colors.text.primary }, currentMode === 'grid' && { color: colors.interactive.primary }]}>
                   Grid View
                 </Text>
-                <Text style={styles.optionDescription}>
+                <Text style={[styles.optionDescription, { color: colors.text.secondary }]}>
                   Compact view with essential info
                 </Text>
               </View>
             </View>
-            {currentMode === 'grid' && <Text style={styles.checkmark}>✓</Text>}
+            {currentMode === 'grid' && <Text style={[styles.checkmark, { color: colors.interactive.primary }]}>✓</Text>}
           </TouchableOpacity>
         </View>
       </Pressable>
@@ -79,11 +82,9 @@ export function LayoutSheet({ visible, onClose, currentMode, onSelectMode }: Lay
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
   },
   container: {
-    backgroundColor: '#FFF',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingBottom: 34, // Safe area padding
@@ -91,12 +92,10 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#E9ECEF',
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1A1A1A',
     textAlign: 'center',
   },
   option: {
@@ -106,9 +105,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
   },
-  selectedOption: {
-    backgroundColor: '#F8F9FA',
-  },
   optionContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -117,26 +113,19 @@ const styles = StyleSheet.create({
   optionIcon: {
     fontSize: 24,
     marginRight: 16,
-    color: '#666',
     width: 30,
     textAlign: 'center',
   },
   optionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1A1A1A',
     marginBottom: 2,
-  },
-  selectedText: {
-    color: '#007AFF',
   },
   optionDescription: {
     fontSize: 14,
-    color: '#666',
   },
   checkmark: {
     fontSize: 18,
-    color: '#007AFF',
     fontWeight: 'bold',
   },
 }); 

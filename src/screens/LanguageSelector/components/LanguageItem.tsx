@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
 
 interface Language {
   code: string;
@@ -17,6 +18,7 @@ interface LanguageItemProps {
 
 export function LanguageItem({ language, isSelected, onSelect }: LanguageItemProps) {
   const { t } = useTranslation();
+  const colors = useColors();
 
   const getLanguageDisplayName = (code: string) => {
     switch (code) {
@@ -31,7 +33,12 @@ export function LanguageItem({ language, isSelected, onSelect }: LanguageItemPro
     <TouchableOpacity
       style={[
         styles.languageItem,
-        isSelected && styles.selectedLanguageItem
+        { backgroundColor: colors.background.secondary },
+        isSelected && {
+          backgroundColor: colors.status.success + '20', // 20% opacity
+          borderWidth: 2,
+          borderColor: colors.status.success,
+        }
       ]}
       onPress={onSelect}
     >
@@ -39,13 +46,14 @@ export function LanguageItem({ language, isSelected, onSelect }: LanguageItemPro
         <Text style={styles.flag}>{language.flag}</Text>
         <Text style={[
           styles.languageName,
-          isSelected && styles.selectedLanguageName
+          { color: colors.text.primary },
+          isSelected && { color: colors.status.success, fontWeight: '600' }
         ]}>
           {getLanguageDisplayName(language.code)}
         </Text>
       </View>
       {isSelected && (
-        <Ionicons name="checkmark" size={24} color="#059669" />
+        <Ionicons name="checkmark" size={24} color={colors.status.success} />
       )}
     </TouchableOpacity>
   );
@@ -59,13 +67,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     marginBottom: 12,
-    backgroundColor: '#F9FAFB',
     minHeight: 70,
-  },
-  selectedLanguageItem: {
-    backgroundColor: '#ECFDF5',
-    borderWidth: 2,
-    borderColor: '#059669',
   },
   languageContent: {
     flexDirection: 'row',
@@ -78,10 +80,5 @@ const styles = StyleSheet.create({
   languageName: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#374151',
-  },
-  selectedLanguageName: {
-    color: '#059669',
-    fontWeight: '600',
   },
 }); 

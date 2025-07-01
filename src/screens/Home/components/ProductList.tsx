@@ -4,6 +4,7 @@ import { ProductCard, type LayoutMode } from './ProductCard/';
 import { Product } from '@/types';
 import { products } from '@/assets/data/products';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
 
 export type { LayoutMode };
 
@@ -14,6 +15,7 @@ interface ProductListProps {
 
 export function ProductList({ onProductPress, layoutMode = 'list' }: ProductListProps) {
   const { t } = useTranslation();
+  const colors = useColors();
   const availableProducts = products.filter(product => product.isAvailable);
 
   const renderProduct = ({ item }: { item: Product }) => (
@@ -25,8 +27,8 @@ export function ProductList({ onProductPress, layoutMode = 'list' }: ProductList
   );
 
   const renderHeader = () => (
-    <View style={styles.header}>
-      <Text style={styles.headerSubtitle}>
+    <View style={[styles.header, { backgroundColor: colors.background.secondary }]}>
+      <Text style={[styles.headerSubtitle, { color: colors.text.secondary }]}>
         {availableProducts.length} {t('home.itemsAvailable')}
       </Text>
     </View>
@@ -34,8 +36,8 @@ export function ProductList({ onProductPress, layoutMode = 'list' }: ProductList
 
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Text style={styles.emptyStateTitle}>{t('home.noProductsTitle')}</Text>
-      <Text style={styles.emptyStateSubtitle}>
+      <Text style={[styles.emptyStateTitle, { color: colors.text.primary }]}>{t('home.noProductsTitle')}</Text>
+      <Text style={[styles.emptyStateSubtitle, { color: colors.text.secondary }]}>
         {t('home.noProductsSubtitle')}
       </Text>
     </View>
@@ -64,11 +66,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 12,
-    backgroundColor: '#F8F9FA',
   },
   headerSubtitle: {
     fontSize: 14,
-    color: '#666',
     textAlign: 'center',
   },
   emptyState: {
@@ -81,12 +81,10 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1A1A1A',
     marginBottom: 8,
   },
   emptyStateSubtitle: {
     fontSize: 16,
-    color: '#666',
     textAlign: 'center',
   },
 }); 

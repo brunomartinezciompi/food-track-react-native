@@ -1,41 +1,44 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
 
-export function NotFound() {
+export function Other() {
+  const colors = useColors();
+  
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <Ionicons name="help-circle-outline" size={120} color="#E5E7EB" />
+          <Ionicons name="help-circle-outline" size={120} color={colors.text.tertiary} />
         </View>
         
         <View style={styles.textContainer}>
-          <Text style={styles.errorCode}>404</Text>
-          <Text style={styles.title}>Page Not Found</Text>
-          <Text style={styles.subtitle}>
+          <Text style={[styles.errorCode, { color: colors.background.tertiary }]}>404</Text>
+          <Text style={[styles.title, { color: colors.text.primary }]}>Page Not Found</Text>
+          <Text style={[styles.subtitle, { color: colors.text.secondary }]}>
             Oops! The page you're looking for doesn't exist or is under construction.
           </Text>
         </View>
 
-        <View style={styles.featureContainer}>
-          <Text style={styles.featureTitle}>Coming Soon</Text>
+        <View style={[styles.featureContainer, { backgroundColor: colors.background.secondary }]}>
+          <Text style={[styles.featureTitle, { color: colors.text.primary }]}>Coming Soon</Text>
           <View style={styles.featureList}>
             <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
-              <Text style={styles.featureText}>Order History</Text>
+              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+              <Text style={[styles.featureText, { color: colors.text.primary }]}>Order History</Text>
             </View>
             <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
-              <Text style={styles.featureText}>Favorites</Text>
+              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+              <Text style={[styles.featureText, { color: colors.text.primary }]}>Favorites</Text>
             </View>
             <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
-              <Text style={styles.featureText}>Loyalty Rewards</Text>
+              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+              <Text style={[styles.featureText, { color: colors.text.primary }]}>Loyalty Rewards</Text>
             </View>
             <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
-              <Text style={styles.featureText}>Delivery Tracking</Text>
+              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+              <Text style={[styles.featureText, { color: colors.text.primary }]}>Delivery Tracking</Text>
             </View>
           </View>
         </View>
@@ -47,7 +50,6 @@ export function NotFound() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   content: {
     flex: 1,
@@ -65,25 +67,21 @@ const styles = StyleSheet.create({
   errorCode: {
     fontSize: 72,
     fontWeight: 'bold',
-    color: '#F3F4F6',
     marginBottom: 8,
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#111827',
     marginBottom: 16,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#6B7280',
     textAlign: 'center',
     lineHeight: 24,
     maxWidth: 280,
   },
   featureContainer: {
-    backgroundColor: '#F9FAFB',
     borderRadius: 16,
     padding: 24,
     width: '100%',
@@ -92,7 +90,6 @@ const styles = StyleSheet.create({
   featureTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#111827',
     marginBottom: 16,
     textAlign: 'center',
   },
@@ -106,7 +103,6 @@ const styles = StyleSheet.create({
   },
   featureText: {
     fontSize: 16,
-    color: '#374151',
     flex: 1,
   },
-});
+}); 

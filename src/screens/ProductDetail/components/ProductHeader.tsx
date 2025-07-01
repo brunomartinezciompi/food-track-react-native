@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Product } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
 
 export function ProductHeader({ product, currentPrice }: { product: Product; currentPrice: number }) {
   const { i18n } = useTranslation();
+  const colors = useColors();
   
   const getLocalizedDescription = () => {
     if (product.descriptions) {
@@ -16,15 +18,15 @@ export function ProductHeader({ product, currentPrice }: { product: Product; cur
   return (
     <View style={styles.headerSection}>
       <View style={styles.titlePriceRow}>
-        <Text style={styles.productTitle}>{product.name}</Text>
+        <Text style={[styles.productTitle, { color: colors.text.primary }]}>{product.name}</Text>
         <View style={styles.priceContainer}>
-          <Text style={styles.currentPrice}>${currentPrice.toFixed(2)}</Text>
+          <Text style={[styles.currentPrice, { color: colors.status.success }]}>${currentPrice.toFixed(2)}</Text>
           {product.sizes && currentPrice !== product.price && (
-            <Text style={styles.originalPrice}>${product.price.toFixed(2)}</Text>
+            <Text style={[styles.originalPrice, { color: colors.text.tertiary }]}>${product.price.toFixed(2)}</Text>
           )}
         </View>
       </View>
-      <Text style={styles.productDescription}>{getLocalizedDescription()}</Text>
+      <Text style={[styles.productDescription, { color: colors.text.secondary }]}>{getLocalizedDescription()}</Text>
     </View>
   );
 }
@@ -42,13 +44,11 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#111827',
     flex: 1,
     marginRight: 16,
   },
   productDescription: {
     fontSize: 16,
-    color: '#6B7280',
     lineHeight: 20,
   },
   priceContainer: {
@@ -57,11 +57,9 @@ const styles = StyleSheet.create({
   currentPrice: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#059669',
   },
   originalPrice: {
     fontSize: 18,
-    color: '#9CA3AF',
     textDecorationLine: 'line-through',
     marginTop: 4,
   },

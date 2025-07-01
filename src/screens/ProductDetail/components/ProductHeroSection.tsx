@@ -3,22 +3,33 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Product, ProductTag, ProductTagColor, ProductTagBackgroundColor } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { useColors } from '@/hooks/useColors';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const getTagColor = (tag: ProductTag): string => {
   return ProductTagColor[tag] || '#6B7280';
 };
 
-const getBackgroundColor = (product: Product): string => {
-  const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
-  return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
+const getBackgroundColor = (product: Product, colors: any, isDark: boolean): string => {
+  if (isDark) {
+    return colors.background.tertiary;
+  } else {
+    const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
+    return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
+  }
 };
 
 export function ProductHeroSection({ product }: { product: Product }) {
   const { t } = useTranslation();
+  const colors = useColors();
+  const { isDark } = useTheme();
   
   return (
-    <View style={[styles.heroSection, { backgroundColor: getBackgroundColor(product) }]}>
-      <Image source={{ uri: product.image }} style={styles.heroImage} />
+    <View style={[styles.heroSection, { backgroundColor: getBackgroundColor(product, colors, isDark) }]}>
+      <Image 
+        source={{ uri: product.image }} 
+        style={[styles.heroImage, { shadowColor: colors.shadow.color }]} 
+      />
       
       {/* Tags Overlay */}
       <View style={styles.tagsContainer}>
@@ -49,7 +60,6 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 80,
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.15,
     shadowRadius: 16,

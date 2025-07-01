@@ -3,6 +3,8 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import { Product, ProductTagBackgroundColor } from '@/types';
 import { ProductCardTags } from './ProductCardTags';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/contexts/ThemeContext';
+import { useColors } from '@/hooks/useColors';
 import type { LayoutMode } from './ProductCard';
 
 interface ProductCardImageProps {
@@ -12,10 +14,16 @@ interface ProductCardImageProps {
 
 export function ProductCardImage({ product, layoutMode }: ProductCardImageProps) {
   const { t } = useTranslation();
+  const { isDark } = useTheme();
+  const colors = useColors();
 
   const getImageBackgroundColor = (): string => {
-    const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
-    return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
+    if (isDark) {
+      return colors.background.tertiary;
+    } else {
+      const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
+      return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
+    }
   };
 
   return (
@@ -30,8 +38,8 @@ export function ProductCardImage({ product, layoutMode }: ProductCardImageProps)
         resizeMode="cover" 
       />
       <ProductCardTags tags={product.tags} />
-      <View style={styles.prepTimeContainer}>
-        <Text style={styles.prepTime}>
+      <View style={[styles.prepTimeContainer]}>
+        <Text style={[styles.prepTime]}>
           {product.preparationTime} {t('home.preparationTime')}
         </Text>
       </View>
@@ -68,13 +76,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 12,
     right: 12,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
   },
   prepTime: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontSize: 12,
     fontWeight: '600',
   },

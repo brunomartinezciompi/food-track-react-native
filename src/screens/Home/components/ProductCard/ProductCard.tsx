@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Product } from '@/types';
 import { ProductCardImage } from './ProductCardImage';
 import { ProductCardContent } from './ProductCardContent';
+import { useColors } from '@/hooks/useColors';
 
 export type LayoutMode = 'list' | 'grid';
 
@@ -13,10 +14,16 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onPress, layoutMode = 'list' }: ProductCardProps) {
+  const colors = useColors();
+  
   return (
     <TouchableOpacity 
       style={[
-        styles.container, 
+        styles.container,
+        {
+          backgroundColor: colors.background.primary,
+          shadowColor: colors.shadow.color,
+        },
         layoutMode === 'grid' && styles.gridContainer
       ]} 
       onPress={onPress} 
@@ -30,11 +37,9 @@ export function ProductCard({ product, onPress, layoutMode = 'list' }: ProductCa
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
     borderRadius: 16,
     marginHorizontal: 16,
     marginVertical: 8,
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,

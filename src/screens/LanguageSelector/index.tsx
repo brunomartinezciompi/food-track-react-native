@@ -7,6 +7,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { LanguageItem, LanguageHeader } from './components';
+import { useColors } from '@/hooks/useColors';
 
 interface Language {
   code: string;
@@ -23,6 +24,7 @@ const languages: Language[] = [
 export function LanguageSelector() {
   const { i18n } = useTranslation();
   const navigation = useNavigation();
+  const colors = useColors();
 
   const handleLanguageSelect = async (languageCode: string) => {
     try {
@@ -42,7 +44,7 @@ export function LanguageSelector() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}>
       <LanguageHeader />
       
       <FlatList
@@ -59,7 +61,6 @@ export function LanguageSelector() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   languageList: {
     flex: 1,
