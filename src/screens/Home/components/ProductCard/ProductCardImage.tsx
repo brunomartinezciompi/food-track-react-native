@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { Product, ProductTagBackgroundColor } from '@/types';
+import { Product } from '@/types';
 import { ProductCardTags } from './ProductCardTags';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/contexts/ThemeContext';
 import { useColors } from '@/hooks/useColors';
 import type { LayoutMode } from './ProductCard';
 
@@ -14,16 +13,11 @@ interface ProductCardImageProps {
 
 export function ProductCardImage({ product, layoutMode }: ProductCardImageProps) {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
   const colors = useColors();
 
+  // Usar un color con más contraste para el background de las imágenes
   const getImageBackgroundColor = (): string => {
-    if (isDark) {
-      return colors.background.tertiary;
-    } else {
-      const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
-      return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
-    }
+    return colors.background.image;
   };
 
   return (

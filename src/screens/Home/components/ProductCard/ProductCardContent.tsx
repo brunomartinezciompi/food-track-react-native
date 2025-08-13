@@ -29,7 +29,7 @@ export function ProductCardContent({ product, layoutMode }: ProductCardContentPr
 
   if (layoutMode === 'grid') {
     return (
-      <View style={styles.gridContentContainer}>
+      <View style={[styles.gridContentContainer, { borderTopColor: colors.border.subtle }]}>
         <Text style={[styles.gridTitle, { color: colors.text.primary }]} numberOfLines={1}>{product.name}</Text>
         <Text style={[styles.gridPrice, { color: colors.status.success }]}>${product.price.toFixed(2)}</Text>
         <Text style={[styles.gridInfo, { color: colors.text.secondary }]}>
@@ -40,7 +40,7 @@ export function ProductCardContent({ product, layoutMode }: ProductCardContentPr
   }
 
   return (
-    <View style={styles.contentContainer}>
+    <View style={[styles.contentContainer, { borderTopColor: colors.border.subtle }]}>
       <View style={styles.headerContainer}>
         <Text style={[styles.title, { color: colors.text.primary }]} numberOfLines={1}>{product.name}</Text>
         <Text style={[styles.price, { color: colors.status.success }]}>${product.price.toFixed(2)}</Text>
@@ -82,9 +82,11 @@ export function ProductCardContent({ product, layoutMode }: ProductCardContentPr
 const styles = StyleSheet.create({
   contentContainer: {
     padding: 16,
+    borderTopWidth: 1,
   },
   gridContentContainer: {
     padding: 12,
+    borderTopWidth: 1,
   },
   headerContainer: {
     flexDirection: 'row',

@@ -26,19 +26,18 @@ export function LanguageSelectorCard() {
   return (
     <TouchableOpacity 
       style={[styles.selector, { 
-        backgroundColor: colors.background.primary,
-        shadowColor: colors.shadow.color,
+        backgroundColor: colors.background.card,
+        borderColor: colors.border.primary,
       }]} 
       onPress={() => navigation.navigate('LanguageSelector' as never)}
     >
       <View style={styles.selectorContent}>
         <View style={styles.selectorLeft}>
-          <View style={[styles.iconContainer, { backgroundColor: colors.interactive.secondary }]}>
+          <View style={[styles.iconContainer, { backgroundColor: colors.background.tertiary }]}>
             <Ionicons name="language" size={24} color={colors.interactive.primary} />
           </View>
           <View>
             <Text style={[styles.selectorTitle, { color: colors.text.primary }]}>{t('settings.language')}</Text>
-            <Text style={[styles.selectorSubtitle, { color: colors.text.secondary }]}>{t('settings.languageSubtitle')}</Text>
           </View>
         </View>
         <View style={styles.selectorRight}>
@@ -55,6 +54,7 @@ export function LanguageSelectorCard() {
 const styles = StyleSheet.create({
   selector: {
     borderRadius: 12,
+    borderWidth: 1,
     marginBottom: 12,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -83,10 +83,6 @@ const styles = StyleSheet.create({
   selectorTitle: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 2,
-  },
-  selectorSubtitle: {
-    fontSize: 14,
   },
   selectorRight: {
     flexDirection: 'row',

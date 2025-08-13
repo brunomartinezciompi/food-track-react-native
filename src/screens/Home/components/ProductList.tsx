@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList, StyleSheet, View, Text } from 'react-native';
+import { FlatList, StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { ProductCard, type LayoutMode } from './ProductCard/';
 import { Product } from '@/types';
-import { products } from '@/assets/data/products';
+import { useProducts } from '@/hooks/useProducts';
 import { useTranslation } from 'react-i18next';
 import { useColors } from '@/hooks/useColors';
 
@@ -16,7 +16,7 @@ interface ProductListProps {
 export function ProductList({ onProductPress, layoutMode = 'list' }: ProductListProps) {
   const { t } = useTranslation();
   const colors = useColors();
-  const availableProducts = products.filter(product => product.isAvailable);
+  const { data: products, isLoading, error } = useProducts();
 
   const renderProduct = ({ item }: { item: Product }) => (
     <ProductCard 
@@ -26,10 +26,22 @@ export function ProductList({ onProductPress, layoutMode = 'list' }: ProductList
     />
   );
 
-  const renderHeader = () => (
-    <View style={[styles.header, { backgroundColor: colors.background.secondary }]}>
-      <Text style={[styles.headerSubtitle, { color: colors.text.secondary }]}>
-        {availableProducts.length} {t('home.itemsAvailable')}
+  const renderLoadingState = () => (
+    <View style={styles.loadingState}>
+      <ActivityIndicator size="large" color={colors.interactive.primary} />
+      <Text style={[styles.loadingText, { color: colors.text.secondary }]}>
+        {t('common.loading')}
+      </Text>
+    </View>
+  );
+
+  const renderErrorState = () => (
+    <View style={styles.emptyState}>
+      <Text style={[styles.emptyStateTitle, { color: colors.text.primary }]}>
+        {t('common.error')}
+      </Text>
+      <Text style={[styles.emptyStateSubtitle, { color: colors.text.secondary }]}>
+        {error?.message || t('common.errorMessage')}
       </Text>
     </View>
   );
@@ -43,12 +55,21 @@ export function ProductList({ onProductPress, layoutMode = 'list' }: ProductList
     </View>
   );
 
+  if (isLoading) {
+    return renderLoadingState();
+  }
+
+  if (error) {
+    return renderErrorState();
+  }
+
+  const availableProducts = products?.filter((product: Product) => product.isAvailable) || [];
+
   return (
     <FlatList
       data={availableProducts}
       renderItem={renderProduct}
       keyExtractor={(item) => item.id.toString()}
-      ListHeaderComponent={renderHeader}
       ListEmptyComponent={renderEmptyState}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
@@ -60,17 +81,23 @@ export function ProductList({ onProductPress, layoutMode = 'list' }: ProductList
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 8,       // Same as card's marginVertical
     paddingBottom: 20,
   },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 12,
+
+  loadingState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+    paddingVertical: 64,
   },
-  headerSubtitle: {
-    fontSize: 14,
+  loadingText: {
+    fontSize: 16,
+    marginTop: 16,
     textAlign: 'center',
   },
+
   emptyState: {
     flex: 1,
     justifyContent: 'center',

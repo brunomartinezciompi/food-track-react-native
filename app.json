@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "food-track-react-native",
+    "name": "Food Track",
     "slug": "food-track-react-native",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -10,14 +10,17 @@
     "scheme": "foodtrackreactnative",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.satya164.reactnavigationtemplate"
+      "bundleIdentifier": "com.brunomartinezciompi.foodtrack",
+      "darkIcon": "./src/assets/icon-dark.png"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#FFF5F0",
+        "darkBackgroundColor": "#1C1917",
+        "darkForegroundImage": "./src/assets/adaptive-icon-dark.png"
       },
-      "package": "com.satya164.reactnavigationtemplate"
+      "package": "com.brunomartinezciompi.foodtrack"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
@@ -27,11 +30,17 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#ffffff",
-          "image": "./src/assets/splash-icon.png"
+          "backgroundColor": "#F4E5D3",
+          "image": "./src/assets/splash-icon.png",
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#1C1917",
+            "image": "./src/assets/splash-icon.png"
+          }
         }
       ],
-      "react-native-edge-to-edge"
+      "react-native-edge-to-edge",
+      "expo-secure-store"
     ]
   }
 }

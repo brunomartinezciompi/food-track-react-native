@@ -1,48 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useColors } from '@/hooks/useColors';
+import { useTranslation } from 'react-i18next';
 
 export function Other() {
   const colors = useColors();
+  const { t } = useTranslation();
   
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}>
-      <View style={styles.content}>
-        <View style={styles.iconContainer}>
-          <Ionicons name="help-circle-outline" size={120} color={colors.text.tertiary} />
-        </View>
-        
-        <View style={styles.textContainer}>
-          <Text style={[styles.errorCode, { color: colors.background.tertiary }]}>404</Text>
-          <Text style={[styles.title, { color: colors.text.primary }]}>Page Not Found</Text>
-          <Text style={[styles.subtitle, { color: colors.text.secondary }]}>
-            Oops! The page you're looking for doesn't exist or is under construction.
-          </Text>
-        </View>
-
-        <View style={[styles.featureContainer, { backgroundColor: colors.background.secondary }]}>
-          <Text style={[styles.featureTitle, { color: colors.text.primary }]}>Coming Soon</Text>
-          <View style={styles.featureList}>
-            <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
-              <Text style={[styles.featureText, { color: colors.text.primary }]}>Order History</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
-              <Text style={[styles.featureText, { color: colors.text.primary }]}>Favorites</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
-              <Text style={[styles.featureText, { color: colors.text.primary }]}>Loyalty Rewards</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
-              <Text style={[styles.featureText, { color: colors.text.primary }]}>Delivery Tracking</Text>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}> 
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <View style={styles.content}>
+          <View style={styles.iconContainer}>
+            <Ionicons name="help-circle-outline" size={120} color={colors.text.tertiary} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={[styles.errorCode, { color: colors.text.tertiary }]}>404</Text>
+            <Text style={[styles.title, { color: colors.text.primary }]}>{t('notFound.title')}</Text>
+            <Text style={[styles.subtitle, { color: colors.text.secondary }]}>{t('notFound.subtitle')}</Text>
+          </View>
+          <View style={[styles.featureContainer, { backgroundColor: colors.background.card, borderColor: colors.border.primary }]}> 
+            <Text style={[styles.featureTitle, { color: colors.text.primary }]}>{t('notFound.comingSoon')}</Text>
+            <View style={styles.featureList}>
+              <View style={styles.featureItem}>
+                <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+                <Text style={[styles.featureText, { color: colors.text.primary }]}>{t('notFound.orderHistory')}</Text>
+              </View>
+              <View style={styles.featureItem}>
+                <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+                <Text style={[styles.featureText, { color: colors.text.primary }]}>{t('notFound.favorites')}</Text>
+              </View>
+              <View style={styles.featureItem}>
+                <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+                <Text style={[styles.featureText, { color: colors.text.primary }]}>{t('notFound.loyaltyRewards')}</Text>
+              </View>
+              <View style={styles.featureItem}>
+                <Ionicons name="checkmark-circle" size={20} color={colors.status.success} />
+                <Text style={[styles.featureText, { color: colors.text.primary }]}>{t('notFound.deliveryTracking')}</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -50,6 +50,9 @@ export function Other() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   content: {
     flex: 1,
@@ -83,6 +86,7 @@ const styles = StyleSheet.create({
   },
   featureContainer: {
     borderRadius: 16,
+    borderWidth: 1,
     padding: 24,
     width: '100%',
     maxWidth: 320,

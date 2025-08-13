@@ -42,7 +42,7 @@ i18n
       pt: { translation: pt },
     },
     fallbackLng: 'en',
-    debug: __DEV__,
+    debug: false,
     interpolation: {
       escapeValue: false,
     },

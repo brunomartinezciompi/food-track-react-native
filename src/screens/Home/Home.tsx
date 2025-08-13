@@ -1,11 +1,12 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { ProductList, LayoutSheet, RestaurantInfoModal } from './components';
+import { ProductList, LayoutSheet, ActiveOrderBanner } from './components';
 import { Product } from '@/types';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { useColors } from '@/hooks/useColors';
+import { useMostRecentActiveOrder, useOrderTracking } from '@/hooks/useOrders';
 
 type HomeStackParamList = {
   HomeMain: undefined;
@@ -26,9 +27,12 @@ export type LayoutMode = 'list' | 'grid';
 export function Home() {
   const [layoutMode, setLayoutMode] = useState<LayoutMode>('list');
   const [sheetVisible, setSheetVisible] = useState(false);
-  const [infoModalVisible, setInfoModalVisible] = useState(false);
   const navigation = useNavigation<NavigationProp>();
   const colors = useColors();
+  
+  // Order tracking
+  const { data: activeOrder } = useMostRecentActiveOrder();
+  useOrderTracking(); // Enable real-time updates
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -42,14 +46,6 @@ export function Home() {
             size={24} 
             color={colors.interactive.primary} 
           />
-        </TouchableOpacity>
-      ),
-      headerRight: () => (
-        <TouchableOpacity 
-          style={styles.headerButton}
-          onPress={() => setInfoModalVisible(true)}
-        >
-          <Ionicons name="information-circle-outline" size={24} color={colors.interactive.primary} />
         </TouchableOpacity>
       ),
     });
@@ -66,6 +62,16 @@ export function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background.secondary }]}>
+      {/* Active Order Banner */}
+      {activeOrder && (
+        <ActiveOrderBanner 
+          order={activeOrder}
+          onPress={() => {
+            (navigation as any).navigate('OrderDetail', { order: activeOrder });
+          }}
+        />
+      )}
+      
       <ProductList 
         onProductPress={handleProductPress} 
         layoutMode={layoutMode}
@@ -76,11 +82,6 @@ export function Home() {
         onClose={() => setSheetVisible(false)}
         currentMode={layoutMode}
         onSelectMode={handleLayoutChange}
-      />
-      
-      <RestaurantInfoModal
-        visible={infoModalVisible}
-        onClose={() => setInfoModalVisible(false)}
       />
     </View>
   );

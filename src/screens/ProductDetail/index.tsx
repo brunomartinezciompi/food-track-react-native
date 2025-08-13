@@ -6,12 +6,15 @@ import {
   Dimensions,
   SafeAreaView,
   StatusBar,
+  ActivityIndicator,
+  Text,
 } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { products } from '@/assets/data/products';
+import { useProduct } from '@/hooks/useProducts';
 import { SizeOption } from '@/types';
 import { useColors } from '@/hooks/useColors';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 import {
   ProductNotFound,
   ProductHeroSection,
@@ -33,8 +36,9 @@ export function ProductDetail() {
   const { id } = route.params;
   const colors = useColors();
   const { isDark } = useTheme();
+  const { t } = useTranslation();
   
-  const product = products.find(p => p.id === id);
+  const { data: product, isLoading, error } = useProduct(id);
   
   const [selectedSize, setSelectedSize] = useState<SizeOption>('M');
   const [quantity, setQuantity] = useState(1);
@@ -45,7 +49,20 @@ export function ProductDetail() {
     return sizeInfo?.price || product.price;
   };
 
-  if (!product) {
+  if (isLoading) {
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: colors.background.primary }]}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={colors.interactive.primary} />
+          <Text style={[styles.loadingText, { color: colors.text.secondary }]}>
+            {t('common.loading')}
+          </Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (error || !product) {
     return <ProductNotFound />;
   }
 
@@ -60,7 +77,10 @@ export function ProductDetail() {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <ProductHeroSection product={product} />
         
-        <View style={styles.contentContainer}>
+        <View style={[
+          styles.contentContainer, 
+          { borderTopColor: colors.border.subtle }
+        ]}>
           <ProductHeader product={product} currentPrice={currentPrice} />
           
           <SizePicker 
@@ -83,6 +103,8 @@ export function ProductDetail() {
       <AddToCartButton 
         currentPrice={currentPrice}
         quantity={quantity}
+        product={product}
+        selectedSize={selectedSize}
       />
     </SafeAreaView>
   );
@@ -98,5 +120,17 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 24,
     paddingTop: 32,
+    borderTopWidth: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+  },
+  loadingText: {
+    fontSize: 16,
+    marginTop: 16,
+    textAlign: 'center',
   },
 });

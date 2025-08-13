@@ -2,23 +2,68 @@
   "common": {
     "loading": "Carregando...",
     "error": "Erro",
+    "errorMessage": "Algo deu errado. Tente novamente.",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "save": "Salvar",
     "close": "Fechar",
-    "back": "Voltar"
+    "back": "Voltar",
+    "continue": "Continuar",
+    "ok": "OK"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Bem-vindo de Volta",
+      "email": "Email",
+      "password": "Senha",
+      "emailPlaceholder": "seu@email.com",
+      "passwordPlaceholder": "Sua senha",
+      "signInButton": "Entrar",
+      "noAccountLink": "Não tem uma conta? Cadastre-se"
+    },
+    "signUp": {
+      "title": "Criar Conta",
+      "email": "Email",
+      "password": "Senha",
+      "emailPlaceholder": "seu@email.com",
+      "passwordPlaceholder": "Mínimo 6 caracteres",
+      "signUpButton": "Criar Conta",
+      "hasAccountLink": "Já tem uma conta? Entre",
+      "termsText": "Ao criar uma conta, você concorda com nossos termos e condições"
+    },
+    "validation": {
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Digite um email válido",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordMinLength": "A senha deve ter pelo menos {{min}} caracteres"
+    },
+    "error": {
+      "registrationTitle": "Erro no Cadastro",
+      "signInTitle": "Erro no Login",
+      "genericTitle": "Erro",
+      "signOutMessage": "Erro ao fazer logout"
+    },
+    "success": {
+      "registrationTitle": "Cadastro Realizado!",
+      "registrationMessage": "Bem-vindo ao Food Track!",
+      "signInTitle": "Bem-vindo!",
+      "signInMessage": "Logado como {{email}}",
+      "signOutTitle": "Logout Realizado",
+      "signOutMessage": "Você fez logout com sucesso"
+    },
+    "signOut": "Sair"
   },
   "navigation": {
     "home": "Início",
     "profile": "Perfil",
     "ourMenu": "Nosso Cardápio",
-    "feed": "Menu",
+    "feed": "Cardápio",
     "updates": "Atualizações",
     "more": "Mais"
   },
   "home": {
-    "layoutList": "Vista Lista",
-    "layoutGrid": "Vista Grade",
+    "layoutList": "Visualização em Lista",
+    "layoutGrid": "Visualização em Grade",
     "selectLayout": "Selecionar Layout",
     "preparationTime": "min",
     "popular": "Popular",
@@ -28,9 +73,9 @@
     "spicy": "Picante",
     "new": "Novo",
     "healthy": "Saudável",
-    "itemsAvailable": "itens deliciosos disponíveis",
+    "itemsAvailable": "produtos deliciosos disponíveis",
     "noProductsTitle": "Nenhum produto disponível",
-    "noProductsSubtitle": "Volte mais tarde para novos itens deliciosos!"
+    "noProductsSubtitle": "Volte mais tarde para novos produtos deliciosos!"
   },
   "profile": {
     "accountDetails": "Detalhes da Conta",
@@ -67,6 +112,18 @@
     "quantity": "Quantidade",
     "addToCart": "Adicionar ao Carrinho"
   },
+  "order": {
+    "status": {
+      "pending": "Pedido Recebido",
+      "confirmed": "Pedido Confirmado",
+      "preparing": "Preparando",
+      "ready": "Pronto para Retirada",
+      "outForDelivery": "A Caminho"
+    },
+    "timeRemaining": "{{minutes}} min restantes",
+    "arriving": "Chegando agora",
+    "moreItems": "itens a mais"
+  },
   "ingredients": {
     "Pizza dough": "Massa de pizza",
     "Tomato sauce": "Molho de tomate",
@@ -92,23 +149,52 @@
     "Ham": "Presunto",
     "Bacon": "Bacon",
     "Pineapple": "Abacaxi",
-    "BBQ sauce": "Molho BBQ",
+    "BBQ sauce": "Molho barbecue",
     "Grilled chicken": "Frango grelhado",
     "Cilantro": "Coentro",
     "Ranch dressing": "Molho ranch",
-    "Green onions": "Cebolinhas"
+    "Green onions": "Cebolinha verde"
   },
   "restaurantInfo": {
     "title": "Sobre o FoodTrack",
     "ourStory": "Nossa História",
-    "ourStoryText": "O FoodTrack tem servido pizzas deliciosas e autênticas desde 2020. Somos apaixonados por usar ingredientes frescos de origem local para criar experiências gastronômicas inesquecíveis para nossa comunidade.",
+    "ourStoryText": "O FoodTrack tem servido pizzas deliciosas e autênticas desde 2020. Somos apaixonados por usar ingredientes frescos e locais para criar experiências gastronômicas memoráveis para nossa comunidade.",
     "freshIngredients": "Ingredientes Frescos",
-    "freshIngredientsText": "Cada pizza é feita com ingredientes selecionados à mão. Desde nossa massa especial feita fresca diariamente até nossos vegetais orgânicos e carnes premium, a qualidade é nossa máxima prioridade.",
+    "freshIngredientsText": "Cada pizza é feita com ingredientes selecionados à mão. Desde nossa massa especial feita fresca diariamente até nossos vegetais orgânicos e carnes premium, a qualidade é nossa prioridade máxima.",
     "quickDelivery": "Entrega Rápida",
     "quickDeliveryText": "Nossa equipe eficiente de cozinha e entrega garante que seu pedido chegue quente e fresco, tipicamente dentro de 15-25 minutos do pedido.",
-    "communityFirst": "Comunidade em Primeiro",
-    "communityFirstText": "Temos orgulho de fazer parte desta comunidade incrível. Apoiamos agricultores locais, participamos de eventos comunitários e nos esforçamos para fazer cada cliente se sentir como família.",
+    "communityFirst": "Comunidade em Primeiro Lugar",
+    "communityFirstText": "Temos orgulho de ser parte desta comunidade incrível. Apoiamos agricultores locais, participamos de eventos comunitários e nos esforçamos para fazer cada cliente se sentir como família.",
     "getInTouch": "Entre em Contato"
+  },
+  "cart": {
+    "title": "Carrinho",
+    "itemAdded": "Item adicionado!",
+    "addedToCart": "adicionado ao carrinho",
+    "empty": "Seu carrinho está vazio",
+    "emptyDescription": "Adicione alguns itens deliciosos para começar",
+    "checkout": "Finalizar Compra",
+    "purchase": "Comprar",
+    "total": "Total",
+    "remove": "Remover",
+    "quantity": "Qtd"
+  },
+  "orderDetail": {
+    "orderInfo": "Informações do Pedido",
+    "orderNumber": "Número do Pedido",
+    "orderTime": "Hora do Pedido",
+    "totalItems": "Total de Itens",
+    "item": "item",
+    "items": "itens",
+    "orderSummary": "Resumo do Pedido",
+    "subtotal": "Subtotal",
+    "tax": "Taxa",
+    "deliveryFee": "Taxa de Entrega",
+    "total": "Total",
+    "cancelOrder": "Cancelar Pedido",
+    "cancelTitle": "Cancelar Pedido",
+    "cancelMessage": "Tem certeza de que deseja cancelar este pedido?",
+    "confirmCancel": "Sim, Cancelar"
   },
   "notFound": {
     "title": "Página Não Encontrada",

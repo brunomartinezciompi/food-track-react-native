@@ -1,5 +1,6 @@
 import { HeaderButton, Text } from '@react-navigation/elements';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import type { LinkingOptions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Other, AppNavigationTabBar } from '@/screens';
 import { ProductDetail } from '@/screens/ProductDetail';
@@ -8,10 +9,13 @@ import { TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useColors } from '@/hooks/useColors';
+import { useAuthContext } from '../../contexts/AuthContext';
+import AuthStack from '../AuthStack';
+import LoadingScreen from '../../screens/LoadingScreen';
 
 const Stack = createNativeStackNavigator();
 
-function RootStack() {
+function MainStack() {
   const { t } = useTranslation();
   const colors = useColors();
   
@@ -57,7 +61,30 @@ function RootStack() {
   );
 }
 
-export function Navigation({ linking, onReady }: { linking?: any; onReady?: () => void }) {
+function RootNavigator() {
+  const { isAuthenticated, isLoading } = useAuthContext();
+
+  // Show loading screen while checking auth state
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  // Show auth stack if not authenticated, main app if authenticated
+  return isAuthenticated ? <MainStack /> : <AuthStack />;
+}
+
+type MainStackParamList = {
+  MainTabs: undefined;
+  ProductDetail: { id: number };
+  NotFound: undefined;
+};
+
+interface NavigationProps {
+  linking?: LinkingOptions<MainStackParamList>;
+  onReady?: () => void;
+}
+
+export function Navigation({ linking, onReady }: NavigationProps) {
   const { isDark } = useTheme();
   const colors = useColors();
   
@@ -76,19 +103,13 @@ export function Navigation({ linking, onReady }: { linking?: any; onReady?: () =
 
   return (
     <NavigationContainer theme={navigationTheme} linking={linking} onReady={onReady}>
-      <RootStack />
+      <RootNavigator />
     </NavigationContainer>
   );
 }
 
-type RootStackParamList = {
-  MainTabs: undefined;
-  ProductDetail: { id: number };
-  NotFound: undefined;
-};
-
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends MainStackParamList {}
   }
 } 

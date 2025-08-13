@@ -1,3 +1,6 @@
+// Export auth types
+export * from '@/types/auth';
+
 // Product Types
 export interface Product {
   id: number;
@@ -6,7 +9,7 @@ export interface Product {
   price: number;
   description?: string;
   descriptions?: LocalizedDescriptions;
-  category: ProductCategory;
+  category: string;
   nutritionInfo: NutritionInfo;
   ingredients: string[];
   tags: ProductTag[];
@@ -21,32 +24,12 @@ export interface LocalizedDescriptions {
   pt: string;
 }
 
-// Size union type (like ProductTag)
-export type Size = 'S' | 'M' | 'L' | 'XL';
-
-// Size pricing type
-export type SizePrice = {
-  S: number;
-  M: number;
-  L: number;
-  XL: number;
-};
-
 export interface ProductSize {
-  size: Size;
+  size: SizeOption;
   price: number;
 }
 
 export type SizeOption = 'S' | 'M' | 'L' | 'XL';
-
-export type ProductCategory = 
-  | 'pizza' 
-  | 'burger' 
-  | 'pasta' 
-  | 'salad' 
-  | 'dessert' 
-  | 'drink' 
-  | 'appetizer';
 
 export type ProductTag = 
   | 'vegetarian' 
@@ -56,27 +39,6 @@ export type ProductTag =
   | 'popular' 
   | 'new' 
   | 'healthy';
-
-// Color Enums for ProductTag
-export enum ProductTagColor {
-  vegetarian = '#10B981',
-  vegan = '#22C55E',
-  'gluten-free' = '#8B5CF6',
-  spicy = '#F97316',
-  popular = '#EF4444',
-  new = '#8B5CF6',
-  healthy = '#06B6D4',
-}
-
-export enum ProductTagBackgroundColor {
-  vegetarian = '#E8F5E8',
-  vegan = '#E8F5E8',
-  'gluten-free' = '#F3E5F5',
-  spicy = '#FFE5D9',
-  popular = '#FFF3E0',
-  new = '#F3E5F5',
-  healthy = '#E0F7FA',
-}
 
 export interface NutritionInfo {
   calories: number;
@@ -88,53 +50,7 @@ export interface NutritionInfo {
   sodium: number; // in mg
 }
 
-// Order Types (used in orders.ts)
-export interface Order {
-  id: string;
-  userId: string;
-  items: OrderItem[];
-  status: OrderStatus;
-  totalAmount: number;
-  subtotal: number;
-  tax: number;
-  deliveryFee: number;
-  discount?: number;
-  couponCode?: string;
-  orderDate: Date;
-  estimatedDeliveryTime?: Date;
-  actualDeliveryTime?: Date;
-  deliveryAddress: Address;
-  paymentMethod: PaymentMethod;
-  specialInstructions?: string;
-  restaurantInfo: RestaurantInfo;
-}
-
-export interface OrderItem {
-  id: string;
-  productId: number;
-  product: Product;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-  customizations?: OrderCustomization[];
-  specialRequests?: string;
-}
-
-export interface OrderCustomization {
-  type: CustomizationType;
-  name: string;
-  price: number;
-  selected: boolean;
-}
-
-export type CustomizationType = 
-  | 'size' 
-  | 'crust' 
-  | 'topping' 
-  | 'sauce' 
-  | 'cheese' 
-  | 'extra' 
-  | 'remove';
+// Order types are now in src/lib/api/orders.ts (single source of truth)
 
 export type OrderStatus = 
   | 'pending' 
@@ -160,27 +76,13 @@ export interface Address {
 
 export interface PaymentMethod {
   id: string;
-  type: PaymentType;
+  type: string;
   cardLast4?: string;
-  cardBrand?: CardBrand;
+  cardBrand?: string;
   expiryMonth?: number;
   expiryYear?: number;
   isDefault: boolean;
 }
-
-export type PaymentType = 
-  | 'credit_card' 
-  | 'debit_card' 
-  | 'paypal' 
-  | 'apple_pay' 
-  | 'google_pay' 
-  | 'cash';
-
-export type CardBrand = 
-  | 'visa' 
-  | 'mastercard' 
-  | 'amex' 
-  | 'discover';
 
 export interface RestaurantInfo {
   id: string;
@@ -190,25 +92,4 @@ export interface RestaurantInfo {
   estimatedPrepTime: number; // in minutes
 }
 
-// Cart Types
-export interface Cart {
-  id: string;
-  userId: string;
-  items: CartItem[];
-  subtotal: number;
-  estimatedTax: number;
-  estimatedDeliveryFee: number;
-  estimatedTotal: number;
-  lastUpdated: Date;
-}
-
-export interface CartItem {
-  id: string;
-  productId: number;
-  product: Product;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-  customizations?: OrderCustomization[];
-  specialRequests?: string;
-} 
+// Cart types removed - not currently used in the app 

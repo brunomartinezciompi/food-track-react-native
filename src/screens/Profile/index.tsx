@@ -2,6 +2,7 @@ import { Text } from '@react-navigation/elements';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
+import { useTranslation } from 'react-i18next';
 
 type ProfileScreenRouteProp = RouteProp<{
   Profile: { user?: string };
@@ -10,6 +11,7 @@ type ProfileScreenRouteProp = RouteProp<{
 export function Profile() {
   const route = useRoute<ProfileScreenRouteProp>();
   const colors = useColors();
+  const { t } = useTranslation();
   // Default user if no params provided
   const userName = route.params?.user || 'Bruno Martinez';
   
@@ -27,15 +29,15 @@ export function Profile() {
       <View style={styles.statsContainer}>
         <View style={styles.statItem}>
           <Text style={[styles.statNumber, { color: colors.text.primary }]}>24</Text>
-          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Orders</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>{t('accountDetails.orders')}</Text>
         </View>
         <View style={styles.statItem}>
           <Text style={[styles.statNumber, { color: colors.text.primary }]}>⭐ 4.8</Text>
-          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Rating</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>{t('accountDetails.rating')}</Text>
         </View>
         <View style={styles.statItem}>
           <Text style={[styles.statNumber, { color: colors.status.success }]}>$127</Text>
-          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>Saved</Text>
+          <Text style={[styles.statLabel, { color: colors.text.secondary }]}>{t('accountDetails.saved')}</Text>
         </View>
       </View>
     </View>

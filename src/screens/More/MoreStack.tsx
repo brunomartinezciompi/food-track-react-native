@@ -10,19 +10,19 @@ import { useColors } from '@/hooks/useColors';
 
 const Stack = createNativeStackNavigator();
 
-export function MoreStack() {
+export default function MoreStack() {
   const { t } = useTranslation();
   const colors = useColors();
   
   const screenOptions = {
     headerStyle: {
-      backgroundColor: colors.background.primary,
+      backgroundColor: colors.background.secondary,
     },
     headerTintColor: colors.text.primary,
     headerTitleStyle: {
       color: colors.text.primary,
     },
-    headerShadowVisible: false,
+    headerBackTitle: t('common.back'),
   };
   
   return (

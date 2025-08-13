@@ -1,11 +1,8 @@
 import React, { createContext, useContext, ReactNode } from 'react';
-import { useColorScheme } from 'react-native';
-import { lightTheme, darkTheme, Theme } from '@/constants/Colors';
+import { useThemeViewModel } from '@/hooks/useThemeViewModel';
 
-interface ThemeContextType {
-  theme: Theme;
-  isDark: boolean;
-}
+// Theme context type (same as view model return type)
+type ThemeContextType = ReturnType<typeof useThemeViewModel>;
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -14,14 +11,10 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const themeViewModel = useThemeViewModel();
 
   return (
-    <ThemeContext.Provider value={{
-      theme: isDark ? darkTheme : lightTheme,
-      isDark,
-    }}>
+    <ThemeContext.Provider value={themeViewModel}>
       {children}
     </ThemeContext.Provider>
   );

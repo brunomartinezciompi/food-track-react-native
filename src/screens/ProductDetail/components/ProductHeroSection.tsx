@@ -1,31 +1,18 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Product, ProductTag, ProductTagColor, ProductTagBackgroundColor } from '@/types';
+import { Product } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useColors } from '@/hooks/useColors';
-import { useTheme } from '@/contexts/ThemeContext';
-
-const getTagColor = (tag: ProductTag): string => {
-  return ProductTagColor[tag] || '#6B7280';
-};
-
-const getBackgroundColor = (product: Product, colors: any, isDark: boolean): string => {
-  if (isDark) {
-    return colors.background.tertiary;
-  } else {
-    const priorityTag = product.tags.find(tag => tag in ProductTagBackgroundColor);
-    return priorityTag ? ProductTagBackgroundColor[priorityTag] : '#FFF8E1';
-  }
-};
+import { useFoodColors } from '@/hooks/useFoodColors';
 
 export function ProductHeroSection({ product }: { product: Product }) {
   const { t } = useTranslation();
   const colors = useColors();
-  const { isDark } = useTheme();
+  const foodColors = useFoodColors();
   
   return (
-    <View style={[styles.heroSection, { backgroundColor: getBackgroundColor(product, colors, isDark) }]}>
+    <View style={[styles.heroSection, { backgroundColor: colors.background.image }]}>
       <Image 
         source={{ uri: product.image }} 
         style={[styles.heroImage, { shadowColor: colors.shadow.color }]} 
@@ -33,11 +20,22 @@ export function ProductHeroSection({ product }: { product: Product }) {
       
       {/* Tags Overlay */}
       <View style={styles.tagsContainer}>
-        {product.tags.slice(0, 2).map((tag, index) => (
-          <View key={index} style={[styles.tag, { backgroundColor: getTagColor(tag) }]}>
-            <Text style={styles.tagText}>{t(`home.${tag}`).toUpperCase()}</Text>
+        {product.tags.slice(0, 2).map((tag, index) => {
+          const tagStyle = foodColors.getTagStyle(tag);
+          return (
+            <View key={index} style={[
+              styles.tag, 
+              { 
+                backgroundColor: tagStyle.background,
+                borderColor: tagStyle.border,
+              }
+            ]}>
+              <Text style={[styles.tagText, { color: tagStyle.text }]}>
+                {t(`home.${tag}`).toUpperCase()}
+              </Text>
           </View>
-        ))}
+          );
+        })}
       </View>
 
       {/* Prep Time Badge */}
@@ -51,10 +49,12 @@ export function ProductHeroSection({ product }: { product: Product }) {
 
 const styles = StyleSheet.create({
   heroSection: {
-    height: 220,
+    height: 240,
     position: 'relative',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 20,
   },
   heroImage: {
     width: 160,
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
   },
   tagsContainer: {
     position: 'absolute',
-    top: 20,
-    left: 20,
+    top: 30,
+    left: 30,
     flexDirection: 'row',
     gap: 8,
   },
@@ -76,16 +76,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
+    borderWidth: 1.5,                    // Borde más grueso
+    shadowOffset: { width: 0, height: 3 }, // Sombra más pronunciada
+    shadowOpacity: 0.3,                  // Sombra más visible
+    shadowRadius: 4,                     // Sombra más extendida
+    elevation: 4,                        // Elevación para Android
   },
   tagText: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#FFFFFF',
+    fontWeight: '700',                   // Más bold
   },
   prepTimeBadge: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: 30,
+    right: 30,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     paddingHorizontal: 12,
     paddingVertical: 6,

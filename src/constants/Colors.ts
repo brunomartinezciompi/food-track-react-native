@@ -1,79 +1,105 @@
-// Color Palette
+// Food Track - Modern Food App Color Palette
 const palette = {
-  // Brand Colors
-  primary: '#007AFF',
-  primaryDark: '#0056CC',
-  secondary: '#FF9500',
-  secondaryDark: '#CC7700',
+  // Brand Colors - Food inspired, appetite stimulating
+  primary: '#FF6B35',        // Vibrant coral-orange (main brand)
+  primaryDark: '#E55A2B',    // Darker coral for pressed states
+  primaryLight: '#FF8F66',   // Lighter coral for subtle elements
   
-  // Neutral Colors
+  secondary: '#27AE60',      // Fresh green (healthy, natural)
+  secondaryDark: '#219A52',  // Darker green for pressed states
+  secondaryLight: '#58C778', // Lighter green for subtle elements
+  
+  accent: '#F39C12',         // Warm amber (for highlights, popular items)
+  accentDark: '#E67E22',     // Darker amber
+  accentLight: '#F7DC6F',    // Light amber for backgrounds
+  
+  // Neutral Colors - Warm grays for food photography
   white: '#FFFFFF',
-  black: '#000000',
-  gray50: '#F9FAFB',
-  gray100: '#F3F4F6',
-  gray200: '#E5E7EB',
-  gray300: '#D1D5DB',
-  gray400: '#9CA3AF',
-  gray500: '#6B7280',
-  gray600: '#4B5563',
-  gray700: '#374151',
-  gray800: '#1F2937',
-  gray900: '#111827',
+  black: '#2C2C2C',          // Softer black for better readability
+  cream: '#FEFCF8',          // Warm white for cards
   
-  // Status Colors
-  success: '#10B981',
-  warning: '#F59E0B',
-  error: '#EF4444',
-  info: '#3B82F6',
+  gray50: '#FAFAF9',         // Warm very light gray
+  gray100: '#F5F5F4',        // Warm light gray
+  gray200: '#E7E5E4',        // Warm light-medium gray
+  gray300: '#D6D3D1',        // Warm medium-light gray
+  gray400: '#A8A29E',        // Warm medium gray
+  gray500: '#78716C',        // Warm dark-medium gray
+  gray600: '#57534E',        // Warm dark gray
+  gray700: '#44403C',        // Warm very dark gray
+  gray800: '#292524',        // Warm almost black
+  gray900: '#1C1917',        // Warm black
   
-  // Food Colors
-  orange: '#F97316',
-  green: '#22C55E',
-  red: '#EF4444',
-  purple: '#8B5CF6',
-  blue: '#06B6D4',
+  // Status Colors - Food app optimized
+  success: '#27AE60',        // Fresh green
+  warning: '#F39C12',        // Warm amber
+  error: '#E74C3C',          // Appetizing red (not too harsh)
+  info: '#3498DB',           // Friendly blue
+  
+  // Food Category Colors
+  spicy: '#E74C3C',          // Red for spicy
+  healthy: '#27AE60',        // Green for healthy
+  popular: '#F39C12',        // Amber for popular
+  new: '#9B59B6',            // Purple for new items
+  vegetarian: '#27AE60',     // Green for vegetarian
+  vegan: '#2ECC71',          // Brighter green for vegan
+  gluten_free: '#3498DB',    // Blue for gluten-free
+  organic: '#F39C12',        // Amber for organic
 };
 
 // Theme Definitions
 export const lightTheme = {
   // Background Colors
   background: {
-    primary: palette.white,
-    secondary: palette.gray50,
-    tertiary: palette.gray100,
-    card: palette.white,
-    modal: palette.white,
+    primary: '#FFF5F0',             // Very soft coral-orange background
+    secondary: '#FFE8DD',           // Soft orange cream background
+    tertiary: '#FFDDD0',            // Subtle orange background
+    card: '#FFFFFF',                // Pure white cards for contrast
+    modal: '#FFFFFF',               // Pure white modal
+    overlay: 'rgba(44, 44, 44, 0.4)', // Warm overlay
+    image: '#FFF0E8',               // Soft orange background for images
   },
   
   // Text Colors
   text: {
-    primary: palette.gray900,
-    secondary: palette.gray600,
-    tertiary: palette.gray500,
-    inverse: palette.white,
-    link: palette.primary,
+    primary: palette.gray800,       // Softer than pure black
+    secondary: palette.gray600,     // Medium gray for secondary text
+    tertiary: palette.gray500,      // Light gray for subtle text
+    inverse: palette.white,         // White text on dark backgrounds
+    link: palette.primary,          // Brand color for links
+    accent: palette.accent,         // Accent color for highlights
   },
   
   // Border Colors
   border: {
-    primary: palette.gray200,
-    secondary: palette.gray300,
-    focus: palette.primary,
+    primary: '#FFCBB8',             // Soft orange border
+    secondary: '#FFB599',           // Medium orange border
+    focus: palette.primary,         // Brand color for focus states
+    subtle: '#FFE8DD',              // Very subtle orange border
   },
   
   // Interactive Colors
   interactive: {
     primary: palette.primary,
     primaryPressed: palette.primaryDark,
-    secondary: palette.gray100,
-    secondaryPressed: palette.gray200,
-    disabled: palette.gray300,
+    primaryLight: palette.primaryLight,
+    
+    secondary: palette.secondary,
+    secondaryPressed: palette.secondaryDark,
+    secondaryLight: palette.secondaryLight,
+    
+    accent: palette.accent,
+    accentPressed: palette.accentDark,
+    
+    surface: '#FFE8DD',              // Soft orange surface
+    surfacePressed: '#FFCBB8',       // Orange pressed surface
+    disabled: '#FFB599',             // Orange disabled
   },
   
   // Tab Bar
   tabBar: {
-    background: palette.white,
-    iconDefault: palette.gray400,
+    background: '#FFFFFF',           // Pure white for contrast
+    border: '#FFCBB8',               // Soft orange border
+    iconDefault: palette.gray500,
     iconSelected: palette.primary,
     labelDefault: palette.gray600,
     labelSelected: palette.primary,
@@ -82,26 +108,71 @@ export const lightTheme = {
   // Status Colors
   status: {
     success: palette.success,
+    successLight: '#D5EDDA',
     warning: palette.warning,
+    warningLight: '#FCF3CF',
     error: palette.error,
+    errorLight: '#FADBD8',
     info: palette.info,
+    infoLight: '#D6EAF8',
   },
   
-  // Product Tag Colors
+  // Product Tag Colors - Enhanced for food
   productTag: {
-    vegetarian: { background: '#E8F5E8', text: palette.green },
-    vegan: { background: '#E8F5E8', text: palette.green },
-    'gluten-free': { background: '#F3E5F5', text: palette.purple },
-    spicy: { background: '#FFE5D9', text: palette.orange },
-    popular: { background: '#FFF3E0', text: palette.orange },
-    healthy: { background: '#E0F7FA', text: palette.blue },
-    new: { background: '#F3E5F5', text: palette.purple },
+    spicy: { 
+      background: '#FFE5E5', 
+      text: '#DC2626',
+      border: '#FCA5A5'
+    },
+    healthy: { 
+      background: '#D1FAE5', 
+      text: '#059669',
+      border: '#6EE7B7'
+    },
+    popular: { 
+      background: '#FEF3C7', 
+      text: '#D97706',
+      border: '#FCD34D'
+    },
+    new: { 
+      background: '#E9D5FF', 
+      text: '#7C3AED',
+      border: '#C4B5FD'
+    },
+    vegetarian: { 
+      background: '#D1FAE5', 
+      text: '#059669',
+      border: '#6EE7B7'
+    },
+    vegan: { 
+      background: '#DCFCE7', 
+      text: '#16A34A',
+      border: '#86EFAC'
+    },
+    'gluten-free': { 
+      background: '#DBEAFE', 
+      text: '#2563EB',
+      border: '#93C5FD'
+    },
+    organic: { 
+      background: '#FEF3C7', 
+      text: '#D97706',
+      border: '#FCD34D'
+    },
+  },
+  
+  // Food specific colors
+  food: {
+    appetizing: palette.primary,      // Main food color
+    fresh: palette.secondary,         // Fresh ingredients
+    warm: palette.accent,             // Warm dishes
+    spice: palette.spicy,            // Spicy indicator
   },
   
   // Shadow
   shadow: {
     color: palette.black,
-    opacity: 0.1,
+    opacity: 0.08,                   // Subtle shadows
   },
 };
 
@@ -113,6 +184,8 @@ export const darkTheme = {
     tertiary: palette.gray700,
     card: palette.gray800,
     modal: palette.gray800,
+    overlay: 'rgba(0, 0, 0, 0.6)',
+    image: palette.gray700,         // Keep darker for dark mode
   },
   
   // Text Colors
@@ -121,57 +194,114 @@ export const darkTheme = {
     secondary: palette.gray300,
     tertiary: palette.gray400,
     inverse: palette.gray900,
-    link: '#5AC8FA', // iOS blue for dark mode
+    link: '#FF8F66',                // Lighter orange for dark mode
+    accent: '#F7DC6F',              // Lighter amber for dark mode
   },
   
   // Border Colors
   border: {
     primary: palette.gray700,
     secondary: palette.gray600,
-    focus: '#5AC8FA',
+    focus: '#FF8F66',               // Lighter orange for dark mode
+    subtle: palette.gray800,
   },
   
   // Interactive Colors
   interactive: {
-    primary: '#5AC8FA',
-    primaryPressed: '#007AFF',
-    secondary: palette.gray700,
-    secondaryPressed: palette.gray600,
+    primary: '#FF8F66',             // Lighter orange for dark mode
+    primaryPressed: palette.primary,
+    primaryLight: '#FFB399',
+    
+    secondary: '#58C778',           // Lighter green for dark mode
+    secondaryPressed: palette.secondary,
+    secondaryLight: '#7DD87F',
+    
+    accent: '#F7DC6F',              // Lighter amber for dark mode
+    accentPressed: palette.accent,
+    
+    surface: palette.gray700,
+    surfacePressed: palette.gray600,
     disabled: palette.gray600,
   },
   
   // Tab Bar
   tabBar: {
     background: palette.gray900,
+    border: palette.gray700,
     iconDefault: palette.gray500,
-    iconSelected: '#5AC8FA',
+    iconSelected: '#FF8F66',
     labelDefault: palette.gray400,
-    labelSelected: '#5AC8FA',
+    labelSelected: '#FF8F66',
   },
   
   // Status Colors
   status: {
-    success: '#30D158', // iOS green for dark mode
-    warning: '#FF9F0A', // iOS orange for dark mode
-    error: '#FF453A',   // iOS red for dark mode
-    info: '#64D2FF',    // iOS blue for dark mode
+    success: '#58C778',
+    successLight: '#1F4E2C',
+    warning: '#F7DC6F',
+    warningLight: '#4A3C0F',
+    error: '#FF6B6B',
+    errorLight: '#4A1C1C',
+    info: '#66B3FF',
+    infoLight: '#1F3A4A',
   },
   
-  // Product Tag Colors
+  // Product Tag Colors - Dark mode optimized
   productTag: {
-    vegetarian: { background: '#1F2F1F', text: '#30D158' },
-    vegan: { background: '#1F2F1F', text: '#30D158' },
-    'gluten-free': { background: '#251F2F', text: '#BF5AF2' },
-    spicy: { background: '#2F1F1F', text: '#FF9F0A' },
-    popular: { background: '#2F251F', text: '#FF9F0A' },
-    healthy: { background: '#1F252F', text: '#64D2FF' },
-    new: { background: '#251F2F', text: '#BF5AF2' },
+    spicy: { 
+      background: '#4A1C1C', 
+      text: '#FF6B6B',
+      border: '#6B2C2C'
+    },
+    healthy: { 
+      background: '#1F4E2C', 
+      text: '#58C778',
+      border: '#2F5E3C'
+    },
+    popular: { 
+      background: '#4A3C0F', 
+      text: '#F7DC6F',
+      border: '#5A4C1F'
+    },
+    new: { 
+      background: '#3C2A4A', 
+      text: '#C999DD',
+      border: '#4C3A5A'
+    },
+    vegetarian: { 
+      background: '#1F4E2C', 
+      text: '#58C778',
+      border: '#2F5E3C'
+    },
+    vegan: { 
+      background: '#1F4E2C', 
+      text: '#7DD87F',
+      border: '#2F5E3C'
+    },
+    'gluten-free': { 
+      background: '#1F3A4A', 
+      text: '#66B3FF',
+      border: '#2F4A5A'
+    },
+    organic: { 
+      background: '#4A3C0F', 
+      text: '#F7DC6F',
+      border: '#5A4C1F'
+    },
+  },
+  
+  // Food specific colors - Dark mode
+  food: {
+    appetizing: '#FF8F66',
+    fresh: '#58C778',
+    warm: '#F7DC6F',
+    spice: '#FF6B6B',
   },
   
   // Shadow
   shadow: {
     color: palette.black,
-    opacity: 0.3,
+    opacity: 0.25,
   },
 };
 

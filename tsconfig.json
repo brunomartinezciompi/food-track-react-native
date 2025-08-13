@@ -14,7 +14,8 @@
       "@types": ["src/types.ts"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@services/*": ["src/services/*"]
+      "@services/*": ["src/services/*"],
+      "lib/*": ["src/lib/*"]
     }
   }
 }

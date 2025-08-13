@@ -2,11 +2,56 @@
   "common": {
     "loading": "Cargando...",
     "error": "Error",
+    "errorMessage": "Algo salió mal. Por favor intenta de nuevo.",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "save": "Guardar",
     "close": "Cerrar",
-    "back": "Atrás"
+    "back": "Atrás",
+    "continue": "Continuar",
+    "ok": "OK"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Bienvenido de vuelta",
+      "email": "Email",
+      "password": "Contraseña",
+      "emailPlaceholder": "tu@email.com",
+      "passwordPlaceholder": "Tu contraseña",
+      "signInButton": "Iniciar Sesión",
+      "noAccountLink": "¿No tienes cuenta? Regístrate"
+    },
+    "signUp": {
+      "title": "Crear Cuenta",
+      "email": "Email",
+      "password": "Contraseña",
+      "emailPlaceholder": "tu@email.com",
+      "passwordPlaceholder": "Mínimo 6 caracteres",
+      "signUpButton": "Crear Cuenta",
+      "hasAccountLink": "¿Ya tienes cuenta? Inicia sesión",
+      "termsText": "Al crear una cuenta, aceptas nuestros términos y condiciones"
+    },
+    "validation": {
+      "emailRequired": "El email es requerido",
+      "emailInvalid": "Ingresa un email válido",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordMinLength": "La contraseña debe tener al menos {{min}} caracteres"
+    },
+    "error": {
+      "registrationTitle": "Error de Registro",
+      "signInTitle": "Error de Inicio de Sesión",
+      "genericTitle": "Error",
+      "signOutMessage": "Error al cerrar sesión"
+    },
+    "success": {
+      "registrationTitle": "¡Registro Exitoso!",
+      "registrationMessage": "¡Bienvenido a Food Track!",
+      "signInTitle": "¡Bienvenido!",
+      "signInMessage": "Has iniciado sesión como {{email}}",
+      "signOutTitle": "Sesión Cerrada",
+      "signOutMessage": "Has cerrado sesión exitosamente"
+    },
+    "signOut": "Cerrar Sesión"
   },
   "navigation": {
     "home": "Inicio",
@@ -67,6 +112,18 @@
     "quantity": "Cantidad",
     "addToCart": "Agregar al Carrito"
   },
+  "order": {
+    "status": {
+      "pending": "Pedido Recibido",
+      "confirmed": "Pedido Confirmado",
+      "preparing": "Preparando",
+      "ready": "Listo para Recoger",
+      "outForDelivery": "En Camino"
+    },
+    "timeRemaining": "{{minutes}} min restantes",
+    "arriving": "Llegando ahora",
+    "moreItems": "artículos más"
+  },
   "ingredients": {
     "Pizza dough": "Masa de pizza",
     "Tomato sauce": "Salsa de tomate",
@@ -109,6 +166,35 @@
     "communityFirst": "La Comunidad Primero",
     "communityFirstText": "Estamos orgullosos de ser parte de esta increíble comunidad. Apoyamos a agricultores locales, participamos en eventos comunitarios y nos esforzamos por hacer que cada cliente se sienta como familia.",
     "getInTouch": "Contáctanos"
+  },
+  "cart": {
+    "title": "Carrito",
+    "itemAdded": "¡Artículo agregado!",
+    "addedToCart": "agregado al carrito",
+    "empty": "Tu carrito está vacío",
+    "emptyDescription": "Agrega algunos productos deliciosos para comenzar",
+    "checkout": "Finalizar Compra",
+    "purchase": "Comprar",
+    "total": "Total",
+    "remove": "Eliminar",
+    "quantity": "Cant"
+  },
+  "orderDetail": {
+    "orderInfo": "Información del Pedido",
+    "orderNumber": "Número de Pedido",
+    "orderTime": "Hora del Pedido",
+    "totalItems": "Total de Artículos",
+    "item": "artículo",
+    "items": "artículos",
+    "orderSummary": "Resumen del Pedido",
+    "subtotal": "Subtotal",
+    "tax": "Impuesto",
+    "deliveryFee": "Costo de Envío",
+    "total": "Total",
+    "cancelOrder": "Cancelar Pedido",
+    "cancelTitle": "Cancelar Pedido",
+    "cancelMessage": "¿Estás seguro de que quieres cancelar este pedido?",
+    "confirmCancel": "Sí, Cancelar"
   },
   "notFound": {
     "title": "Página No Encontrada",

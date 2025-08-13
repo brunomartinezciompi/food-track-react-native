@@ -2,17 +2,62 @@
   "common": {
     "loading": "Loading...",
     "error": "Error",
+    "errorMessage": "Something went wrong. Please try again.",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "save": "Save",
     "close": "Close",
-    "back": "Back"
+    "back": "Back",
+    "continue": "Continue",
+    "ok": "OK"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome Back",
+      "email": "Email",
+      "password": "Password",
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "Your password",
+      "signInButton": "Sign In",
+      "noAccountLink": "Don't have an account? Sign up"
+    },
+    "signUp": {
+      "title": "Create Account",
+      "email": "Email",
+      "password": "Password",
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "Minimum 6 characters",
+      "signUpButton": "Create Account",
+      "hasAccountLink": "Already have an account? Sign in",
+      "termsText": "By creating an account, you agree to our terms and conditions"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least {{min}} characters"
+    },
+    "error": {
+      "registrationTitle": "Registration Error",
+      "signInTitle": "Sign In Error",
+      "genericTitle": "Error",
+      "signOutMessage": "Error signing out"
+    },
+    "success": {
+      "registrationTitle": "Registration Successful!",
+      "registrationMessage": "Welcome to Food Track!",
+      "signInTitle": "Welcome!",
+      "signInMessage": "Signed in as {{email}}",
+      "signOutTitle": "Signed Out",
+      "signOutMessage": "You have successfully signed out"
+    },
+    "signOut": "Sign Out"
   },
   "navigation": {
     "home": "Home",
     "profile": "Profile",
     "ourMenu": "Our Menu",
-    "feed": "Feed",
+    "feed": "Menu",
     "updates": "Updates",
     "more": "More"
   },
@@ -24,17 +69,17 @@
     "popular": "Popular",
     "vegetarian": "Vegetarian",
     "vegan": "Vegan",
-    "glutenFree": "Gluten Free",
+    "glutenFree": "Gluten-Free",
     "spicy": "Spicy",
     "new": "New",
     "healthy": "Healthy",
-    "itemsAvailable": "delicious items available",
+    "itemsAvailable": "delicious products available",
     "noProductsTitle": "No products available",
-    "noProductsSubtitle": "Check back later for new delicious items!"
+    "noProductsSubtitle": "Come back later for new delicious products!"
   },
   "profile": {
     "accountDetails": "Account Details",
-    "accountDetailsSubtitle": "Personal information and stats",
+    "accountDetailsSubtitle": "Personal information and statistics",
     "settings": "Settings",
     "settingsSubtitle": "Preferences and configuration",
     "other": "Other",
@@ -52,7 +97,7 @@
   },
   "languages": {
     "english": "English",
-    "spanish": "Spanish", 
+    "spanish": "Spanish",
     "portuguese": "Portuguese"
   },
   "productDetail": {
@@ -67,6 +112,35 @@
     "quantity": "Quantity",
     "addToCart": "Add to Cart"
   },
+  "order": {
+    "status": {
+      "pending": "Order Received",
+      "confirmed": "Order Confirmed",
+      "preparing": "Preparing",
+      "ready": "Ready for Pickup",
+      "outForDelivery": "On the Way"
+    },
+    "timeRemaining": "{{minutes}} min remaining",
+    "arriving": "Arriving now",
+    "moreItems": "more items"
+  },
+  "orderDetail": {
+    "orderInfo": "Order Information",
+    "orderNumber": "Order Number",
+    "orderTime": "Order Time",
+    "totalItems": "Total Items",
+    "item": "item",
+    "items": "items",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "deliveryFee": "Delivery Fee",
+    "total": "Total",
+    "cancelOrder": "Cancel Order",
+    "cancelTitle": "Cancel Order",
+    "cancelMessage": "Are you sure you want to cancel this order?",
+    "confirmCancel": "Yes, Cancel"
+  },
   "ingredients": {
     "Pizza dough": "Pizza dough",
     "Tomato sauce": "Tomato sauce",
@@ -78,7 +152,7 @@
     "Mushrooms": "Mushrooms",
     "Red onions": "Red onions",
     "Black olives": "Black olives",
-    "Tomatoes": "Tomates",
+    "Tomatoes": "Tomatoes",
     "Mozzarella": "Mozzarella",
     "Cheddar": "Cheddar",
     "Parmesan": "Parmesan",
@@ -101,14 +175,14 @@
   "restaurantInfo": {
     "title": "About FoodTrack",
     "ourStory": "Our Story",
-    "ourStoryText": "FoodTrack has been serving delicious, authentic pizzas since 2020. We're passionate about using fresh, locally-sourced ingredients to create unforgettable dining experiences for our community.",
+    "ourStoryText": "FoodTrack has been serving delicious and authentic pizzas since 2020. We are passionate about using fresh, locally-sourced ingredients to create memorable dining experiences for our community.",
     "freshIngredients": "Fresh Ingredients",
     "freshIngredientsText": "Every pizza is made with hand-selected ingredients. From our signature dough made fresh daily to our organic vegetables and premium meats, quality is our top priority.",
     "quickDelivery": "Quick Delivery",
-    "quickDeliveryText": "Our efficient kitchen and delivery team ensure your order arrives hot and fresh, typically within 15-25 minutes of ordering.",
+    "quickDeliveryText": "Our efficient kitchen and delivery team ensures your order arrives hot and fresh, typically within 15-25 minutes of ordering.",
     "communityFirst": "Community First",
     "communityFirstText": "We're proud to be part of this amazing community. We support local farmers, participate in community events, and strive to make every customer feel like family.",
-    "getInTouch": "Get in Touch"
+    "getInTouch": "Get In Touch"
   },
   "notFound": {
     "title": "Page Not Found",
@@ -118,5 +192,17 @@
     "favorites": "Favorites",
     "loyaltyRewards": "Loyalty Rewards",
     "deliveryTracking": "Delivery Tracking"
+  },
+  "cart": {
+    "title": "Cart",
+    "itemAdded": "Item added!",
+    "addedToCart": "added to cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Add some delicious items to get started",
+    "checkout": "Checkout",
+    "purchase": "Purchase",
+    "total": "Total",
+    "remove": "Remove",
+    "quantity": "Qty"
   }
 } 

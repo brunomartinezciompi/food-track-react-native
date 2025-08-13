@@ -1,0 +1,19 @@
+NODE_ENV=development
+
+# Supabase Configuration
+# Get these values from your Supabase project dashboard
+EXPO_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Social Auth (Optional)
+EXPO_PUBLIC_GOOGLE_CLIENT_ID_IOS=
+EXPO_PUBLIC_GOOGLE_CLIENT_ID_ANDROID=
+EXPO_PUBLIC_APPLE_CLIENT_ID=
+
+# Analytics (Optional)
+EXPO_PUBLIC_ANALYTICS_KEY=
+
+# Instructions:
+# 1. Copy this file to .env.development
+# 2. Replace the placeholder values with your actual Supabase credentials
+# 3. Run: npm run env:dev to activate development environment 
