@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect, useCallback } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { ProductList, LayoutSheet, ActiveOrderBanner } from './components';
 import { Product } from '@/types';
@@ -51,9 +51,9 @@ export function Home() {
     });
   }, [navigation, layoutMode, colors]);
 
-  const handleProductPress = (product: Product) => {
+  const handleProductPress = useCallback((product: Product) => {
     navigation.navigate('ProductDetail', { id: product.id });
-  };
+  }, [navigation]);
 
   const handleLayoutChange = (mode: LayoutMode) => {
     setLayoutMode(mode);

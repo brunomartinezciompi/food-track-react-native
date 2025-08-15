@@ -203,6 +203,8 @@
     "purchase": "Purchase",
     "total": "Total",
     "remove": "Remove",
-    "quantity": "Qty"
+    "quantity": "Qty",
+    "purchaseSuccess": "Purchase Successful!",
+    "ordersCreated": "Your orders have been created successfully"
   }
 } 

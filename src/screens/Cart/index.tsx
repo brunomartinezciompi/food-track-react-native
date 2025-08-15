@@ -14,6 +14,7 @@ import { useColors } from '@/hooks/useColors';
 import { useCart } from '@/contexts';
 import { useCreateOrder } from '@/hooks/useOrders';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 import type { CartItem } from '@/contexts';
 
 export function CartScreen() {
@@ -55,6 +56,17 @@ export function CartScreen() {
       // Only clear cart if ALL orders succeeded
       clearCart();
       console.log('✅ [CART] All orders created successfully, cart cleared');
+      
+      // Show success toast
+      Toast.show({
+        type: 'success',
+        text1: t('cart.purchaseSuccess'),
+        text2: t('cart.ordersCreated'),
+        visibilityTime: 3000,
+      });
+      
+      // Close the modal after successful purchase
+      navigation.goBack();
       
     } catch (error) {
       console.error('❌ [CART] Purchase failed, keeping items in cart:', error);

@@ -177,7 +177,9 @@
     "purchase": "Comprar",
     "total": "Total",
     "remove": "Remover",
-    "quantity": "Qtd"
+    "quantity": "Qtd",
+    "purchaseSuccess": "Compra Bem-sucedida!",
+    "ordersCreated": "Seus pedidos foram criados com sucesso"
   },
   "orderDetail": {
     "orderInfo": "Informações do Pedido",

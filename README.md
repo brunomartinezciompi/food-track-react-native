@@ -1,123 +1,89 @@
-# 🍕 FoodTrack - React Native Learning Project
+# 🍕 Food Track - Food Delivery App
 
-A food delivery app built with React Native + Expo to learn key concepts: **Navigation**, **Presentation**, **Localization**, and **UI**.
+A modern food delivery app built with React Native + Expo and Supabase. Features real-time order tracking, shopping cart, and user authentication.
 
-## 🎯 Learning Focus
+## ✨ What I Built
 
-### 🧭 Navigation
-- **Tab Navigation**: Home + More tabs
-- **Stack Navigation**: Separate stacks per tab
-- **Deep Linking**: Product detail navigation
-- **Type-safe Navigation**: TypeScript with React Navigation
+### Core Features
+- 🛒 **Shopping Cart**: Browse products, add to cart, modify quantities
+- 🔐 **Authentication**: Sign up/login with email and password
+- 📦 **Order Management**: Create, track, and cancel orders in real-time
+- 🌍 **Multi-language**: English, Spanish, Portuguese support
+- 🎨 **Theme Support**: Dark/light mode based on system preference
 
-### 🎨 Presentation & UI
-- **Modal Presentations**: Layout sheet, restaurant info
-- **Product Cards**: Grid/List toggle with animations
-- **Size Selection**: Interactive picker with pricing
-- **Header Buttons**: Custom header components
-- **Responsive Design**: Adaptive layouts
+### Current Limitations
+- No payment processing (just order calculation)
+- No delivery addresses (single default location)
+- Cart doesn't persist between app restarts
+- Only shows active orders (no history)
 
-### 🌍 Localization (i18n)
-- **Multi-language**: EN, ES, PT
-- **Dynamic Switching**: Real-time language changes
-- **Localized Content**: Product descriptions, ingredients, UI text
-- **Translation Keys**: Organized JSON structure
+## 🏗️ Architecture
 
-### 🔧 TypeScript & Data
-- **Union Types**: `Size`, `ProductCategory`, `ProductTag`
-- **Product Data**: 10+ pizzas with nutrition, ingredients, pricing
-- **Type Safety**: Full TypeScript coverage
-- **Helper Functions**: Product filtering and queries
+### Backend (Supabase)
+- **Authentication**: User signup/login with Supabase Auth
+- **Database**: PostgreSQL with Row Level Security
+- **Real-time**: Live order status updates
+- **Tables**: users, profiles, products, orders, order_items
 
-## 🚀 Quick Start
-
-```bash
-npm install
-npx expo start
-```
-
-## 📁 Key Files
-
+### Frontend Structure
 ```
 src/
-├── navigation/
-│   ├── HomeStack.tsx       # Home tab stack
-│   └── root/index.tsx      # Root tab navigator
-├── screens/
-│   ├── Home/               # Product list + layout toggle
-│   ├── ProductDetail/      # Product detail + size picker
-│   ├── More/              # Settings menu
-│   └── TabBar/            # Bottom tab bar
-├── localization/
-│   └── translations/      # EN/ES/PT JSON files
-├── assets/data/
-│   └── products.ts        # Product catalog + types
-└── types.ts              # TypeScript definitions
+├── screens/           # All app screens
+│   ├── Home/         # Product listing
+│   ├── Cart/         # Shopping cart (modal)
+│   ├── OrderDetail/  # Order tracking
+│   └── SignIn|SignUp/ # Authentication
+├── navigation/       # Navigation setup
+├── contexts/         # Global state (Auth, Cart, Theme)
+├── hooks/           # Custom hooks and API calls
+├── lib/             # Supabase config and API functions
+└── localization/    # Multi-language support
 ```
-
-## 🎯 Key Concepts Implemented
-
-### Navigation Structure
-```typescript
-// Tab-based with separate stacks
-Root Navigator
-├── Home Tab (HomeStack)
-│   ├── Home (Product List)
-│   ├── ProductDetail
-│   ├── Profile
-│   └── Settings
-└── More Tab (MoreStack)
-    ├── More (Menu)
-    ├── Profile
-    ├── Settings
-    └── LanguageSelector
-```
-
-### TypeScript Types
-```typescript
-type Size = 'S' | 'M' | 'L' | 'XL';
-type ProductCategory = 'pizza' | 'burger' | 'pasta';
-type ProductTag = 'vegetarian' | 'popular' | 'spicy';
-
-interface Product {
-  id: number;
-  descriptions: LocalizedDescriptions;
-  sizes?: ProductSize[];
-  tags: ProductTag[];
-}
-```
-
-### Localization
-```typescript
-// Dynamic language switching
-const { t, i18n } = useTranslation();
-i18n.changeLanguage('es'); // Real-time switch
-
-// Localized product data
-descriptions: {
-  en: 'Classic pepperoni pizza',
-  es: 'Pizza clásica de pepperoni',
-  pt: 'Pizza clássica de pepperoni'
-}
-```
-
-## 🔍 What I Learned
-
-- **React Navigation**: Tab + Stack navigation patterns
-- **Modal Presentations**: Layout sheets and overlays
-- **i18n**: Multi-language support with i18next
-- **TypeScript**: Union types, interfaces, type safety
-- **Component Architecture**: Modular, reusable components
-- **Data Management**: Structured product data with types
 
 ## 🛠️ Tech Stack
 
-- **React Native** + **Expo**
-- **TypeScript**
-- **React Navigation v6**
-- **i18next** (localization)
-- **Ionicons** (icons)
+- **React Native** + **Expo** - Mobile framework
+- **TypeScript** - Type safety
+- **Supabase** - Backend (Auth + Database + Real-time)
+- **React Query** - Server state management
+- **React Navigation** - Navigation
+- **i18next** - Internationalization
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- Expo CLI
+- Supabase account
+
+### Setup
+```bash
+# Install dependencies
+npm install
+
+# Copy environment file
+cp env-example.txt .env.development
+
+# Add your Supabase credentials to .env.development
+# EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+# EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Start development server
+npm start
+
+# Run on iOS simulator
+npm run ios
+
+# Run on Android emulator  
+npm run android
+```
+
+### Database Setup
+1. Create a new Supabase project
+2. Run the SQL files in your Supabase SQL editor:
+   - `supabase-schema.sql` - Creates tables and security policies
+   - `supabase-seed-data.sql` - Adds sample products
 
 ---
 
-**Learning Project** - Focus on navigation, presentation, localization, and UI patterns.
+**Built with React Native, Expo, and Supabase**

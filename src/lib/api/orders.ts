@@ -173,9 +173,10 @@ export const getActiveOrders = async (): Promise<Order[]> => {
 
   console.log('✅ [ORDERS_API] Active orders fetched successfully:', {
     count: data?.length || 0,
-    orders: data?.map(order => ({
+    orderDetails: data?.map(order => ({
       id: order.id,
       status: order.status,
+      created_at: order.created_at,
       totalAmount: order.total_amount,
       itemCount: order.order_items?.length || 0,
     })) || [],

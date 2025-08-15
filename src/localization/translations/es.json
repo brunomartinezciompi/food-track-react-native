@@ -177,7 +177,9 @@
     "purchase": "Comprar",
     "total": "Total",
     "remove": "Eliminar",
-    "quantity": "Cant"
+    "quantity": "Cant",
+    "purchaseSuccess": "¡Compra Exitosa!",
+    "ordersCreated": "Tus órdenes han sido creadas exitosamente"
   },
   "orderDetail": {
     "orderInfo": "Información del Pedido",

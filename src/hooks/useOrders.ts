@@ -18,8 +18,8 @@ export const useActiveOrders = () => {
   return useQuery({
     queryKey: orderKeys.active(),
     queryFn: getActiveOrders,
-    staleTime: 30 * 1000, // 30 seconds - más frecuente para orders
-    gcTime: 2 * 60 * 1000, // 2 minutes
+    staleTime: 30 * 1000,
+    gcTime: 2 * 60 * 1000,
   });
 };
 
@@ -224,8 +224,16 @@ export const useCancelOrder = () => {
       return data;
     },
     onSuccess: (data) => {
+      console.log('🔄 [ORDER_HOOK] Order cancelled, invalidating caches...', {
+        cancelledOrderId: data.id,
+        newStatus: data.status,
+      });
+      
       // Invalidate and refetch orders
       queryClient.invalidateQueries({ queryKey: orderKeys.all });
+      queryClient.invalidateQueries({ queryKey: orderKeys.active() });
+      
+      console.log('✅ [ORDER_HOOK] Cache invalidation completed');
       
       Toast.show({
         type: 'success',

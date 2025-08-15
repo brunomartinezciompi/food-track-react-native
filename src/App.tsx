@@ -4,6 +4,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import Toast from 'react-native-toast-message';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useSyncQueriesExternal } from 'react-query-external-sync';
+import * as ExpoDevice from 'expo-device';
+import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { Navigation } from '@navigation/index';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -29,6 +34,36 @@ Asset.loadAsync([
 SplashScreen.preventAutoHideAsync();
 
 export function App() {
+  
+  useSyncQueriesExternal({
+    queryClient,
+    socketURL: "http://localhost:42831",
+    deviceName: `${Platform.OS} ${Platform.Version}`,
+    platform: Platform.OS,
+    deviceId: `${Platform.OS}-${ExpoDevice.modelName || 'simulator'}`,
+    isDevice: ExpoDevice.isDevice ?? false,
+    extraDeviceInfo: {
+      appVersion: "1.0.0",
+      modelName: ExpoDevice.modelName || "Unknown",
+      osVersion: String(Platform.Version),
+      brand: ExpoDevice.brand || "Unknown",
+    },
+    enableLogs: __DEV__,
+    envVariables: {
+      NODE_ENV: process.env.NODE_ENV,
+      EXPO_PUBLIC_SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
+    },
+    asyncStorage: AsyncStorage,
+    secureStorage: SecureStore,
+    secureStorageKeys: [
+      "userToken",
+      "refreshToken",
+      "biometricKey",
+      "deviceId",
+    ],
+  });
+  
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
