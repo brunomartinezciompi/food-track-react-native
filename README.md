@@ -11,6 +11,8 @@ A modern food delivery app built with React Native + Expo and Supabase. Features
 - 🌍 **Multi-language**: English, Spanish, Portuguese support
 - 🎨 **Theme Support**: Dark/light mode based on system preference
 
+https://github.com/user-attachments/assets/65453310-d8e8-45f7-9ec8-3ce43a2c6ff0
+
 ### Current Limitations
 - No payment processing (just order calculation)
 - No delivery addresses (single default location)
@@ -83,7 +85,7 @@ npm run android
 2. Run the SQL files in your Supabase SQL editor:
    - `supabase-schema.sql` - Creates tables and security policies
    - `supabase-seed-data.sql` - Adds sample products
-
+If you need to clear database you can use `supabase-cleanup.sql`
 ---
 
 **Built with React Native, Expo, and Supabase**
