@@ -4,6 +4,12 @@
 -- Insert all mock data from products.ts into Supabase tables
 
 -- ============================================
+-- CLEAR EXISTING DATA (idempotent)
+-- ============================================
+-- Solo limpiar datos de productos (no profiles ni orders de usuarios reales)
+TRUNCATE TABLE product_sizes, nutrition_info, product_ingredients, product_tags, products RESTART IDENTITY CASCADE;
+
+-- ============================================
 -- INSERT PRODUCTS
 -- ============================================
 
@@ -313,13 +319,14 @@ INSERT INTO product_sizes (product_id, size, price) VALUES
 (9, 'XL', 19.99);
 
 -- ============================================
--- SAMPLE COUPONS
+-- RESET SEQUENCES
 -- ============================================
-
-INSERT INTO coupons (code, discount_type, discount_value, min_order_amount, max_discount_amount, expires_at, is_active, usage_limit) VALUES
-('SAVE5', 'fixed_amount', 5.00, 20.00, NULL, '2024-12-31 23:59:59', true, 100),
-('PIZZA10', 'percentage', 10.00, 15.00, 5.00, '2024-12-31 23:59:59', true, 50),
-('WELCOME20', 'percentage', 20.00, 25.00, 10.00, '2024-12-31 23:59:59', true, 200);
+-- Asegurar que los IDs autoincrement continúen correctamente
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));
+SELECT setval('product_tags_id_seq', (SELECT MAX(id) FROM product_tags));
+SELECT setval('product_ingredients_id_seq', (SELECT MAX(id) FROM product_ingredients));
+SELECT setval('nutrition_info_id_seq', (SELECT MAX(id) FROM nutrition_info));
+SELECT setval('product_sizes_id_seq', (SELECT MAX(id) FROM product_sizes));
 
 -- ============================================
 -- SUCCESS MESSAGE
