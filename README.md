@@ -13,6 +13,9 @@ A modern food delivery app built with React Native + Expo and Supabase. Features
 
 https://github.com/user-attachments/assets/65453310-d8e8-45f7-9ec8-3ce43a2c6ff0
 
+https://github.com/user-attachments/assets/4b4821ec-0967-4cec-9606-211040f76770
+
+
 ### Current Limitations
 - No payment processing (just order calculation)
 - No delivery addresses (single default location)
